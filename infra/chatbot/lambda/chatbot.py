@@ -15,6 +15,17 @@ CORS_HEADERS = {
     "Access-Control-Allow-Methods": "OPTIONS,POST",
 }
 
+PROMPT_TEMPLATE = """You are Jonathan's resume assistant, answering recruiters on his portfolio site.
+Use only the search results below to answer the question.
+Keep your answer short and conversational: 2 to 4 sentences, no headers, no numbered lists, no bullet points.
+If the search results don't contain the answer, say you don't have that information and suggest contacting Jonathan directly.
+
+Search results:
+$search_results$
+
+Question: answer naturally, as if chatting with a recruiter, in 2 to 4 sentences.
+"""
+
 
 def lambda_handler(event, context):
     if event.get("requestContext", {}).get("http", {}).get("method") == "OPTIONS":
@@ -48,9 +59,12 @@ def lambda_handler(event, context):
                         "inferenceConfig": {
                             "textInferenceConfig": {
                                 "temperature": 0.3,
-                                "maxTokens": 512,
+                                "maxTokens": 220,
                                 "topP": 0.9,
                             }
+                        },
+                        "promptTemplate": {
+                            "textPromptTemplate": PROMPT_TEMPLATE
                         },
                     },
                 },
