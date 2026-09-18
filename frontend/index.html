@@ -1,80 +1,553 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Your Name - Junior Cloud Engineer</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jonathan Angel Gonzalez | Junior Cloud Engineer - AWS</title>
+<meta name="description" content="Junior Cloud Engineer specialized in AWS, Terraform, and serverless architectures. AWS Certified Solutions Architect - Associate and AI Practitioner.">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0b1f33;
+  --orange: #ff9900;
+  --gray-bg: #f7f8fa;
+  --text-dark: #1a1a1a;
+  --text-muted: #5a6472;
+  --border: #e2e5e9;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--gray-bg);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background: var(--navy);
+  z-index: 100;
+  width: 100%;
+}
+.nav-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1.5rem;
+}
+.nav-logo { color: #fff; font-weight: 700; letter-spacing: 1px; }
+.nav-links a {
+  color: #cfd8e3;
+  text-decoration: none;
+  margin-left: 1.2rem;
+  font-size: 0.88rem;
+}
+.nav-links a:hover { color: #fff; }
+.nav-cta {
+  background: var(--orange) !important;
+  color: var(--navy) !important;
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #16324a 100%);
+  color: #fff;
+  text-align: center;
+  padding: 3.5rem 1.5rem 3rem;
+}
+.hero h1 { font-size: 2.2rem; margin-bottom: 0.3rem; color: #fff; }
+.hero-role { font-size: 1.15rem; color: var(--orange); font-weight: 600; margin-bottom: 0.6rem; }
+.hero-tagline { color: #cfd8e3; max-width: 520px; margin: 0 auto 1.2rem; font-size: 0.98rem; }
+.hero-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; }
+.hero-links { display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap; }
+
+.badge {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #ffffff !important;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  text-decoration: none;
+  display: inline-block;
+}
+.badge:hover { background: rgba(255,255,255,0.25); }
+
+.btn {
+  padding: 0.65rem 1.4rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: inline-block;
+  cursor: pointer;
+}
+.btn-primary { background: var(--orange) !important; color: var(--navy) !important; }
+.btn-primary:hover { background: #e68a00 !important; }
+.btn-secondary { background: transparent; color: #fff !important; border: 1px solid rgba(255,255,255,0.4); }
+.btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+main { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 3rem; }
+
+section {
+  background: #fff;
+  padding: 2rem;
+  margin: 1.8rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  scroll-margin-top: 80px;
+}
+
+h2 {
+  color: var(--navy);
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+  border-bottom: 3px solid var(--orange);
+  display: inline-block;
+  padding-bottom: 0.2rem;
+}
+.section-subtitle { color: var(--text-muted); font-size: 0.92rem; margin: 0.6rem 0 1.2rem; }
+
+.project-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1.2rem;
+  background: #fafbfc;
+}
+.project-card:last-child { margin-bottom: 0; }
+.project-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.4rem; }
+.project-header h3 { color: var(--navy); font-size: 1.05rem; }
+.project-year { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; }
+.project-problem, .project-result, .project-stack { font-size: 0.92rem; margin-top: 0.5rem; }
+.project-stack { color: var(--text-muted); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.skill-group h4 { color: var(--navy); font-size: 0.92rem; margin-bottom: 0.3rem; }
+.skill-group p { font-size: 0.88rem; color: var(--text-muted); }
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.cert-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fafbfc;
+  text-decoration: none;
+}
+.cert-card:hover { border-color: var(--orange); background: #fff9f0; }
+.cert-issuer { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.03em; }
+.cert-name { font-size: 0.95rem; font-weight: 700; color: var(--navy); line-height: 1.35; }
+.cert-year { font-size: 0.8rem; color: var(--orange); font-weight: 600; }
+
+.exp-item { margin-bottom: 1.4rem; }
+.exp-item:last-child { margin-bottom: 0; }
+.exp-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
+.exp-header h3 { color: var(--navy); font-size: 1.02rem; }
+.exp-date { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; }
+.exp-company { color: var(--orange); font-weight: 600; font-size: 0.88rem; margin: 0.15rem 0 0.5rem; }
+.exp-item ul { padding-left: 1.2rem; font-size: 0.92rem; }
+.exp-item li { margin-bottom: 0.3rem; }
+
+.live-demo-header { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.live-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #22c55e;
+  display: inline-block;
+  box-shadow: 0 0 0 0 rgba(34,197,94,0.6);
+  animation: pulse-dot 1.8s infinite;
+}
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+  70% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+.live-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #16a34a;
+  letter-spacing: 0.05em;
+}
+
+.demo-stat-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1.2rem 0 1.6rem;
+}
+.demo-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+  padding: 1.4rem 1rem;
+  background: linear-gradient(160deg, #0b1f33 0%, #16324a 100%);
+  border-radius: 10px;
+  color: #fff;
+}
+.demo-stat-icon { font-size: 1.6rem; }
+.demo-stat-value { font-size: 1.6rem; font-weight: 800; color: var(--orange); }
+.demo-stat-label { font-size: 0.85rem; font-weight: 600; color: #fff; }
+.demo-stat-source { font-size: 0.72rem; color: #b9c4d0; }
+
+.chat-card {
+  border-top: 1px solid var(--border);
+  padding-top: 1.4rem;
+}
+.chat-card h3 { color: var(--navy); font-size: 1.05rem; margin-bottom: 0.3rem; }
+
+#chat-window {
+  min-height: 140px;
+  max-height: 260px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 0.8rem 0;
+  overflow-y: auto;
+  background: var(--gray-bg);
+  font-size: 0.9rem;
+}
+#chat-window p { margin-bottom: 0.5rem; }
+.chat-input-row { display: flex; gap: 0.5rem; }
+#chat-input { flex: 1; padding: 0.6rem; border: 1px solid var(--border); border-radius: 5px; font-size: 0.9rem; }
+#chat-send { padding: 0.6rem 1.2rem; background: var(--orange); color: var(--navy); border: none; border-radius: 5px; font-weight: 700; cursor: pointer; }
+#chat-send:hover { background: #e68a00; }
+
+.contact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+.contact-grid a {
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.88rem;
+}
+.contact-grid a:hover { background: var(--gray-bg); }
+
+footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  padding: 2rem 1rem;
+}
+
+@media (max-width: 600px) {
+  .nav-links a { margin-left: 0.6rem; font-size: 0.78rem; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .cert-grid { grid-template-columns: 1fr; }
+  .demo-stat-row { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 1.7rem; }
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Your Name</h1>
-    <p>Junior Cloud Engineer | AWS Solutions Architect Associate | AWS AI Practitioner</p>
-  </header>
 
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>Aspiring Cloud/DevOps Engineer specialized in AWS and Terraform, with hands-on
-      experience building serverless architectures, infrastructure as code, and
-      AI-powered applications using Amazon Bedrock.</p>
-    </section>
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">JAG</span>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#live-demo">Live Demo</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </div>
+  </div>
+</nav>
 
-    <section id="skills">
-      <h2>Skills</h2>
+<header class="hero">
+  <h1>Jonathan Angel Gonzalez</h1>
+  <p class="hero-role">Junior Cloud Engineer</p>
+  <p class="hero-tagline">AWS infrastructure, automated with Terraform. Serverless, secure, and cost-aware by design.</p>
+  <div class="hero-badges">
+    <a href="https://www.credly.com/badges/acb43683-5fc4-49c8-821f-7a49d90f2c74" target="_blank" class="badge">AWS Solutions Architect - Associate</a>
+    <a href="https://www.credly.com/badges/4bea0010-dd3b-4433-be2c-d2b46f1915d0" target="_blank" class="badge">AWS AI Practitioner</a>
+    <a href="http://cert.efset.org/wkopgM" target="_blank" class="badge">EF SET English C1</a>
+  </div>
+  <div class="hero-links">
+    <a href="mailto:jonathan.angel.tech@gmail.com" class="btn btn-primary">Contact Me</a>
+    <a href="https://github.com/tatan461" target="_blank" class="btn btn-secondary">View GitHub</a>
+    <a href="https://linkedin.com/in/jonathan-angel-gonzalez-0543b441a" target="_blank" class="btn btn-secondary">LinkedIn</a>
+  </div>
+</header>
+
+<main>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Junior Cloud Engineer focused on cloud infrastructure automation and serverless architectures.
+    Certified as AWS Solutions Architect - Associate and AWS AI Practitioner, with proven hands-on
+    ability building modular Infrastructure as Code with Terraform, designing highly available Multi-AZ
+    network architectures, implementing security with KMS, and integrating AI services (Amazon Bedrock)
+    with FinOps cost telemetry. Currently seeking my first professional opportunity as a Junior Cloud /
+    DevOps Engineer, remote-first.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <p class="section-subtitle">Four end-to-end AWS projects, each fully provisioned with Terraform and documented on GitHub.</p>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3>Cloud Resume Challenge with AI Assistant</h3>
+        <span class="project-year">2026</span>
+      </div>
+      <p class="project-problem"><strong>Problem:</strong> Most junior cloud portfolios show isolated demos instead of one coherent, production-style system spanning frontend, backend, IaC, CI/CD, and AI.</p>
+      <p class="project-result"><strong>What I built:</strong> A personal resume site hosted on S3 and CloudFront with a serverless visit counter (Lambda, DynamoDB, API Gateway), fully provisioned with Terraform and deployed through a GitHub Actions pipeline authenticated via OIDC. The site also integrates an AI assistant built on Amazon Bedrock (Nova Micro) with a Knowledge Base grounded in this resume, protected by Bedrock Guardrails to keep answers on topic.</p>
+      <p class="project-stack"><strong>Stack:</strong> S3, CloudFront, Route 53, ACM, Lambda, DynamoDB, API Gateway, Amazon Bedrock, Terraform, GitHub Actions</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3>Kubernetes Cluster on Amazon EKS with Autoscaling &amp; Observability</h3>
+        <span class="project-year">2026</span>
+      </div>
+      <p class="project-problem"><strong>Problem:</strong> Applications running on a single container platform can't self-heal, scale under load, or give teams visibility into cluster health.</p>
+      <p class="project-result"><strong>What I built:</strong> Containerized an application with multi-stage Docker builds and deployed it to an Amazon EKS cluster provisioned with Terraform, configured a Horizontal Pod Autoscaler for load-based scaling, packaged releases with Helm, and set up Prometheus and Grafana for real-time cluster and application observability. Images are pushed to Amazon ECR through a GitHub Actions pipeline that runs automated tests and a vulnerability scan before every deployment.</p>
+      <p class="project-stack"><strong>Stack:</strong> Docker, Amazon EKS, Kubernetes, Helm, Amazon ECR, Prometheus, Grafana, GitHub Actions, Terraform</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3>AWS Cost Optimization Dashboard</h3>
+        <span class="project-year">2026</span>
+      </div>
+      <p class="project-problem"><strong>Problem:</strong> Cloud spend grows silently without visibility into idle resources or right-sizing opportunities.</p>
+      <p class="project-result"><strong>What I built:</strong> Automated reporting on EC2 rightsizing, Graviton migration candidates, and idle resource detection using AWS Cost Explorer and Compute Optimizer data, with savings tracked on a live dashboard.</p>
+      <p class="project-stack"><strong>Stack:</strong> AWS Cost Explorer, Compute Optimizer, Lambda, QuickSight, Terraform</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3>Automated Backup &amp; Disaster Recovery Pipeline</h3>
+        <span class="project-year">2026</span>
+      </div>
+      <p class="project-problem"><strong>Problem:</strong> Without automated, encrypted, and tiered backups, data loss and recovery time both increase.</p>
+      <p class="project-result"><strong>What I built:</strong> Automated database backups with Python/Boto3, encrypted archives with AWS KMS, and applied S3 Lifecycle rules to tier data to Glacier for cost-efficient long-term retention, with Slack alerts on failure.</p>
+      <p class="project-stack"><strong>Stack:</strong> Python, Boto3, AWS S3, KMS, Lifecycle policies, CloudWatch</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>AWS &amp; Cloud Infrastructure</h4>
+        <p>VPC, EC2, S3, IAM, Lambda, API Gateway, DynamoDB, KMS, CloudWatch, Amazon Bedrock, Amazon EKS, ECR</p>
+      </div>
+      <div class="skill-group">
+        <h4>Infrastructure as Code</h4>
+        <p>Terraform (modules, remote state, multi-environment)</p>
+      </div>
+      <div class="skill-group">
+        <h4>Security &amp; Governance</h4>
+        <p>IAM Roles &amp; Policies, Security Groups, NACLs, Least Privilege, KMS encryption</p>
+      </div>
+      <div class="skill-group">
+        <h4>Networking &amp; Systems</h4>
+        <p>Linux (Ubuntu), TCP/IP, Subnetting, DNS, SSH, Troubleshooting</p>
+      </div>
+      <div class="skill-group">
+        <h4>DevOps &amp; Automation</h4>
+        <p>Git, GitHub, GitHub Actions, Docker, Kubernetes, Helm, Bash Scripting, AWS CLI, Python</p>
+      </div>
+      <div class="skill-group">
+        <h4>Monitoring &amp; Observability</h4>
+        <p>Prometheus, Grafana, Amazon CloudWatch, CloudWatch Alarms &amp; SNS</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <p class="section-subtitle">Verified credentials, click any card to view the public verification page.</p>
+    <div class="cert-grid">
+      <a href="https://www.credly.com/badges/acb43683-5fc4-49c8-821f-7a49d90f2c74" target="_blank" class="cert-card">
+        <span class="cert-issuer">Amazon Web Services</span>
+        <span class="cert-name">AWS Certified Solutions Architect - Associate</span>
+        <span class="cert-year">2026</span>
+      </a>
+      <a href="https://www.credly.com/badges/4bea0010-dd3b-4433-be2c-d2b46f1915d0" target="_blank" class="cert-card">
+        <span class="cert-issuer">Amazon Web Services</span>
+        <span class="cert-name">AWS Certified AI Practitioner</span>
+        <span class="cert-year">2026</span>
+      </a>
+      <a href="http://cert.efset.org/wkopgM" target="_blank" class="cert-card">
+        <span class="cert-issuer">EF Standard English Test</span>
+        <span class="cert-name">EF SET English Certificate - C1 Advanced</span>
+        <span class="cert-year">2026</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Professional Experience</h2>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <h3>Home Automation and Systems Specialist Technician</h3>
+        <span class="exp-date">2024 - Present</span>
+      </div>
+      <p class="exp-company">Ingenium SL - Oviedo, Spain</p>
       <ul>
-        <li>Cloud: AWS (EC2, S3, Lambda, DynamoDB, API Gateway, CloudFront, Route 53, Bedrock)</li>
-        <li>Infrastructure as Code: Terraform</li>
-        <li>Scripting: Python, Bash</li>
-        <li>Operating Systems: Linux, Windows, WSL</li>
-        <li>CI/CD: GitHub Actions</li>
-        <li>Networking: VPC, subnets, security groups, DNS</li>
+        <li>Installation, integration, diagnostics, and maintenance of automation, control, and local network systems.</li>
+        <li>Resolution of technical incidents in local networks, communications, and hardware equipment.</li>
+        <li>Development of local scripts to optimize testing and technical support for devices.</li>
       </ul>
-    </section>
+    </div>
 
-    <section id="certifications">
-      <h2>Certifications</h2>
+    <div class="exp-item">
+      <div class="exp-header">
+        <h3>Hardware Support and Equipment Repair Technician</h3>
+        <span class="exp-date">2017 - 2023</span>
+      </div>
+      <p class="exp-company">Oviedo, Spain</p>
       <ul>
-        <li>AWS Certified AI Practitioner</li>
-        <li>AWS Certified Solutions Architect - Associate</li>
+        <li>Diagnosis and repair of hardware components in computers and mobile devices.</li>
+        <li>On-site and remote customer service and technical support.</li>
       </ul>
-    </section>
+    </div>
+  </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <ul>
-        <li>Cloud Resume Challenge with AI (this website) - S3, CloudFront, Lambda, DynamoDB, Bedrock, Terraform</li>
-        <li>EC2 web server provisioned with Terraform</li>
-        <li>VPC from scratch with public/private subnets</li>
-      </ul>
-    </section>
+  <section id="education">
+    <h2>Education</h2>
+    <div class="exp-item">
+      <div class="exp-header">
+        <h3>Vocational Diploma in Microcomputer Systems and Networks</h3>
+        <span class="exp-date">2020 - 2022</span>
+      </div>
+      <p class="exp-company">IES No. 1 - Gijon, Asturias, Spain</p>
+      <p>Basic Windows/Linux systems administration, local network setup, and user technical support.</p>
+    </div>
+  </section>
 
-    <section id="experience">
-      <h2>Experience</h2>
-      <p>Add your relevant work history, internships, or freelance IT support projects here.</p>
-    </section>
+  <section id="languages">
+    <h2>Languages</h2>
+    <p>Spanish - Native &nbsp;|&nbsp; English - Advanced (C1)</a></p>
+  </section>
 
-    <section id="education">
-      <h2>Education</h2>
-      <p>Vocational training in Microcomputer Systems and Networks.</p>
-    </section>
+  <section id="live-demo">
+    <div class="live-demo-header">
+      <h2>Live Demo</h2>
+      <span class="live-dot"></span>
+      <span class="live-label">LIVE INFRASTRUCTURE</span>
+    </div>
+    <p class="section-subtitle">This section is not a mockup. It is served by the actual AWS backend described in the Cloud Resume Challenge project above.</p>
 
-    <section id="counter">
-      <p>Visits: <span id="visit-count">...</span></p>
-    </section>
+    <div class="demo-stat-row">
+      <div class="demo-stat-card">
+        <span class="demo-stat-icon">&#128065;</span>
+        <span class="demo-stat-value" id="visit-count">...</span>
+        <span class="demo-stat-label">Site Visits</span>
+        <span class="demo-stat-source">API Gateway &rarr; Lambda &rarr; DynamoDB</span>
+      </div>
+      <div class="demo-stat-card">
+        <span class="demo-stat-icon">&#129302;</span>
+        <span class="demo-stat-value">Nova Micro</span>
+        <span class="demo-stat-label">AI Model</span>
+        <span class="demo-stat-source">Amazon Bedrock + Guardrails</span>
+      </div>
+    </div>
 
-    <section id="chat">
-      <h2>Ask my AI assistant about my resume</h2>
-      <div id="chat-window"></div>
-      <input type="text" id="chat-input" placeholder="Type your question...">
-      <button id="chat-send">Send</button>
-    </section>
+    <div class="chat-card">
+      <h3>Ask My AI Assistant About My Background</h3>
+      <p class="section-subtitle">Powered by Amazon Bedrock with a Knowledge Base grounded in this resume.</p>
+      <div id="chat-window"><p><em>Ask a question below to get started, e.g. "What AWS projects has he built?"</em></p></div>
+      <div class="chat-input-row">
+        <input type="text" id="chat-input" placeholder="e.g. What AWS projects has he built?">
+        <button id="chat-send">Send</button>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: your.email@example.com | LinkedIn: linkedin.com/in/yourprofile | GitHub: github.com/yourusername</p>
-    </section>
-  </main>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>I'm currently open to Junior Cloud / DevOps Engineer roles, remote-first.</p>
+    <div class="contact-grid">
+      <a href="mailto:jonathan.angel.tech@gmail.com">jonathan.angel.tech@gmail.com</a>
+      <a href="tel:+34643273718">+34 643 273 718</a>
+      <a href="https://linkedin.com/in/jonathan-angel-gonzalez-0543b441a" target="_blank">LinkedIn</a>
+      <a href="https://github.com/tatan461" target="_blank">GitHub</a>
+    </div>
+  </section>
 
-  <script src="script.js"></script>
+</main>
+
+<footer>
+  <p>&copy; 2026 Jonathan Angel Gonzalez. Built with S3, CloudFront, Lambda, and Terraform.</p>
+</footer>
+
+<script>
+const COUNTER_API_URL = "https://uqn2o2aed8.execute-api.us-east-1.amazonaws.com/counter";
+const CHAT_API_URL = "https://YOUR_API_GATEWAY_ENDPOINT/chat";
+
+async function loadVisitCount() {
+  try {
+    const res = await fetch(COUNTER_API_URL, { method: "POST" });
+    const data = await res.json();
+    document.getElementById("visit-count").innerText = data.views;
+  } catch (e) {
+    document.getElementById("visit-count").innerText = "N/A";
+  }
+}
+
+async function sendMessage() {
+  const input = document.getElementById("chat-input");
+  const chatWindow = document.getElementById("chat-window");
+  const question = input.value.trim();
+  if (!question) return;
+
+  chatWindow.innerHTML += `<p><strong>You:</strong> ${question}</p>`;
+  input.value = "";
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+
+  try {
+    const res = await fetch(CHAT_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question })
+    });
+    const data = await res.json();
+    chatWindow.innerHTML += `<p><strong>Assistant:</strong> ${data.answer}</p>`;
+  } catch (e) {
+    chatWindow.innerHTML += `<p><strong>Assistant:</strong> Backend not deployed yet, this is a placeholder.</p>`;
+  }
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+document.getElementById("chat-send").addEventListener("click", sendMessage);
+document.getElementById("chat-input").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") sendMessage();
+});
+window.addEventListener("DOMContentLoaded", loadVisitCount);
+</script>
+
 </body>
 </html>

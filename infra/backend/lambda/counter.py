@@ -8,7 +8,8 @@ table = dynamodb.Table(os.environ["TABLE_NAME"])
 def handler(event, context):
     response = table.update_item(
         Key={"id": "global"},
-        UpdateExpression="SET views = if_not_exists(views, :start) + :inc",
+        UpdateExpression="SET #v = if_not_exists(#v, :start) + :inc",
+        ExpressionAttributeNames={"#v": "views"},
         ExpressionAttributeValues={":start": 0, ":inc": 1},
         ReturnValues="UPDATED_NEW"
     )
