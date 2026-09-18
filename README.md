@@ -29,8 +29,6 @@ This repository is my implementation of the [Cloud Resume Challenge](https://clo
 
 <img src="docs/images/architecture.png" alt="Cloud Resume AI Architecture" width="100%">
 
-*Diagram generated with [draw.io](https://app.diagrams.net) using official AWS icons. Editable source: [`docs/diagrams/cloud-resume-ai-architecture.drawio`](docs/diagrams/cloud-resume-ai-architecture.drawio).*
-
 **Flow summary:**
 
 User → CloudFront (CDN + HTTPS) → S3 (static site, private bucket with OAC), which branches into:
