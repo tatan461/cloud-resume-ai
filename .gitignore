@@ -1,8 +1,39 @@
-.terraform/
+# Local .terraform directories (provider binaries, downloaded modules)
+**/.terraform/*
+
+# Terraform state files — may contain sensitive data, never commit
 *.tfstate
-*.tfstate.backup
+*.tfstate.*
+
+# Terraform variable files — may contain secrets
 *.tfvars
-.terraform.lock.hcl
-__pycache__/
+*.tfvars.json
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Override files (used for local overrides, not for version control)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform CLI configuration files
+.terraformrc
+terraform.rc
+
+# Terraform plan output files
+*.tfplan
+
+# Lambda build artifacts (zips are generated from source, no need to track)
 *.zip
-.env
+
+# Windows "downloaded from internet" metadata files
+*:Zone.Identifier
+
+# OS / editor junk
+.DS_Store
+.vscode/
+.idea/
+*.swp
