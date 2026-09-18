@@ -11,3 +11,9 @@ variable "aws_region" {
   type        = string
   default     = "us-east-1"
 }
+
+variable "chat_model_id" {
+  description = "Bedrock foundation model ID used to generate chatbot responses."
+  type        = string
+  default     = "amazon.nova-micro-v1:0"
+}

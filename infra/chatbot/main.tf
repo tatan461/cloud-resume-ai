@@ -3,11 +3,16 @@
 # Data source: resume-context.md uploaded to S3.
 # Vector store: Amazon S3 Vectors (cheapest option, no fixed monthly cost).
 
+
 terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.100"
+      version = "~> 6.24"
+    }
+    archive = {
+      source  = "hashicorp/archive"
+      version = "~> 2.8"
     }
   }
 }
@@ -102,8 +107,8 @@ resource "aws_iam_role_policy" "bedrock_kb_policy" {
           "s3vectors:ListVectors"
         ]
         Resource = [
-          aws_s3vectors_vector_bucket.kb_vectors.arn,
-          aws_s3vectors_index.kb_index.arn
+          aws_s3vectors_vector_bucket.kb_vectors.vector_bucket_arn,
+          aws_s3vectors_index.kb_index.index_arn
         ]
       },
       {
@@ -138,9 +143,8 @@ resource "aws_bedrockagent_knowledge_base" "resume_kb" {
 
   storage_configuration {
     type = "S3_VECTORS"
-    s3vectors_configuration {
-      s3_vector_bucket_arn = aws_s3vectors_vector_bucket.kb_vectors.arn
-      vector_index_arn     = aws_s3vectors_index.kb_index.arn
+    s3_vectors_configuration {
+      index_arn = aws_s3vectors_index.kb_index.index_arn
     }
   }
 

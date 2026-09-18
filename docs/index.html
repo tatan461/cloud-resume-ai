@@ -506,7 +506,7 @@ footer {
 
 <script>
 const COUNTER_API_URL = "https://uqn2o2aed8.execute-api.us-east-1.amazonaws.com/counter";
-const CHAT_API_URL = "https://YOUR_API_GATEWAY_ENDPOINT/chat";
+const CHAT_API_URL = "https://8lh865zm3i.execute-api.us-east-1.amazonaws.com/chat";
 
 async function loadVisitCount() {
   try {
@@ -521,25 +521,40 @@ async function loadVisitCount() {
 async function sendMessage() {
   const input = document.getElementById("chat-input");
   const chatWindow = document.getElementById("chat-window");
+  const sendBtn = document.getElementById("chat-send");
   const question = input.value.trim();
   if (!question) return;
 
-  chatWindow.innerHTML += `<p><strong>You:</strong> ${question}</p>`;
+  chatWindow.innerHTML += `<p><strong>You:</strong> ${escapeHtml(question)}</p>`;
   input.value = "";
+  sendBtn.disabled = true;
   chatWindow.scrollTop = chatWindow.scrollHeight;
 
   try {
     const res = await fetch(CHAT_API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question })
+      body: JSON.stringify({ message: question })
     });
     const data = await res.json();
-    chatWindow.innerHTML += `<p><strong>Assistant:</strong> ${data.answer}</p>`;
+
+    if (!res.ok) {
+      chatWindow.innerHTML += `<p><strong>Assistant:</strong> ${escapeHtml(data.error || "Something went wrong.")}</p>`;
+    } else {
+      chatWindow.innerHTML += `<p><strong>Assistant:</strong> ${escapeHtml(data.answer)}</p>`;
+    }
   } catch (e) {
-    chatWindow.innerHTML += `<p><strong>Assistant:</strong> Backend not deployed yet, this is a placeholder.</p>`;
+    chatWindow.innerHTML += `<p><strong>Assistant:</strong> Network error, please try again.</p>`;
+  } finally {
+    sendBtn.disabled = false;
+    chatWindow.scrollTop = chatWindow.scrollHeight;
   }
-  chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
 }
 
 document.getElementById("chat-send").addEventListener("click", sendMessage);

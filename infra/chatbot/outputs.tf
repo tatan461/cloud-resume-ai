@@ -17,5 +17,15 @@ output "kb_source_bucket" {
 
 output "vector_bucket_arn" {
   description = "ARN of the S3 Vectors bucket used as the vector store."
-  value       = aws_s3vectors_vector_bucket.kb_vectors.arn
+  value       = aws_s3vectors_vector_bucket.kb_vectors.vector_bucket_arn
+}
+
+output "guardrail_id" {
+  description = "ID of the Bedrock Guardrail applied to chatbot responses."
+  value       = aws_bedrock_guardrail.resume_guardrail.guardrail_id
+}
+
+output "chatbot_api_endpoint" {
+  description = "Invoke URL for the chatbot API. Use this in the frontend widget."
+  value       = "${aws_apigatewayv2_api.chatbot_api.api_endpoint}/chat"
 }
