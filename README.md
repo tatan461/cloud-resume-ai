@@ -1,33 +1,72 @@
 # Cloud Resume Challenge + AI (Bedrock)
 
-Professional portfolio deployed 100% on AWS with Terraform, combining:
-- AWS Solutions Architect Associate certification (architecture, security, networking)
-- AWS AI Practitioner certification (Bedrock, RAG, Guardrails)
+[![Deployment](https://img.shields.io/badge/deployment-github--pages-success)]()
+[![IaC](https://img.shields.io/badge/IaC-Terraform-623CE4)]()
+[![Cloud](https://img.shields.io/badge/cloud-AWS-FF9900)]()
+[![Status](https://img.shields.io/badge/status-in%20progress-yellow)]()
 
-## Architecture
+Portfolio profesional desplegado 100% en AWS con Terraform, combinando un currículum estático de alto rendimiento con un asistente de IA conversacional (RAG) capaz de responder preguntas sobre mi trayectoria y proyectos.
 
-User -> CloudFront (CDN + HTTPS) -> S3 (static site, private bucket with OAC)
-                                  -> API Gateway -> Lambda (visit counter) -> DynamoDB
-                                  -> API Gateway -> Lambda (AI chatbot) -> Bedrock Knowledge Base (RAG) -> Bedrock Guardrails -> Nova Micro model
+**Autor:** Jonathan Ángel González — Junior Cloud Engineer | [AWS Solutions Architect Associate](#) · [AWS AI Practitioner](#)
+[LinkedIn](https://linkedin.com/in/jonathan-angel-gonzalez-0543b441a) · [GitHub](https://github.com/tatan461)
 
-## Project phases
+---
 
-- [ ] Phase 1: Static frontend (S3 + CloudFront + ACM + Route 53)
-- [ ] Phase 2: Visit counter backend (API Gateway + Lambda + DynamoDB)
-- [ ] Phase 3: Full migration to Terraform
-- [ ] Phase 4: CI/CD with GitHub Actions (OIDC, no static credentials)
-- [ ] Phase 5: AI chatbot with Bedrock Knowledge Base + Guardrails
-- [ ] Phase 6: Chat widget on the frontend
+## Por qué este proyecto
 
-## Architecture decisions
+Este repositorio es mi implementación del [Cloud Resume Challenge](https://cloudresumechallenge.dev/), extendida con un chatbot basado en Amazon Bedrock. El objetivo es demostrar, con infraestructura real y documentada, las competencias detrás de mis certificaciones **AWS Solutions Architect – Associate** y **AWS AI Practitioner**: diseño de arquitecturas serverless, seguridad, redes de alta disponibilidad, IA generativa y automatización con IaC.
 
-- Private S3 bucket + Origin Access Control (OAC): avoids exposing the bucket directly, only CloudFront can read it.
-- HTTP API in API Gateway instead of REST API: simpler and cheaper for this use case.
-- Amazon Nova Micro model in Bedrock: the most cost-effective option ($0.035 per million input tokens), sufficient for a portfolio RAG chatbot.
-- Bedrock Guardrails: prevents the chatbot from answering off-topic questions or leaking sensitive information.
-- OIDC authentication in GitHub Actions: no static AWS credentials stored as secrets.
+## Arquitectura
 
-## How to deploy (WSL)
+```
+Usuario
+  │
+  ▼
+CloudFront (CDN + HTTPS)
+  │
+  ▼
+S3 (sitio estático, bucket privado con OAC)
+  │
+  ├──► API Gateway ─► Lambda (contador de visitas) ─► DynamoDB
+  │
+  └──► API Gateway ─► Lambda (chatbot IA)
+                          │
+                          ▼
+                Bedrock Knowledge Base (RAG)
+                          │
+                          ▼
+                Bedrock Guardrails ─► Modelo Amazon Nova Micro
+```
+
+Todo el stack se define como código y se despliega vía Terraform, sin recursos creados manualmente en la consola de AWS.
+
+## Fases del proyecto
+
+- [x] **Fase 1** — Frontend estático (S3 + CloudFront + ACM + Route 53 / GitHub Pages)
+- [ ] **Fase 2** — Backend del contador de visitas (API Gateway + Lambda + DynamoDB)
+- [ ] **Fase 3** — Migración completa a Terraform
+- [ ] **Fase 4** — CI/CD con GitHub Actions (autenticación OIDC, sin credenciales estáticas)
+- [ ] **Fase 5** — Chatbot de IA con Bedrock Knowledge Base + Guardrails
+- [ ] **Fase 6** — Widget de chat integrado en el frontend
+
+## Decisiones de arquitectura
+
+- **Bucket S3 privado + Origin Access Control (OAC):** evita exponer el bucket directamente; solo CloudFront puede leerlo.
+- **HTTP API en API Gateway** en lugar de REST API: más simple y económica para este caso de uso.
+- **Modelo Amazon Nova Micro en Bedrock:** la opción más rentable ($0.035 por millón de tokens de entrada), suficiente para un chatbot RAG de portfolio.
+- **Bedrock Guardrails:** evita que el chatbot responda preguntas fuera de contexto o filtre información sensible.
+- **Autenticación OIDC en GitHub Actions:** sin credenciales AWS estáticas almacenadas como secrets.
+
+## Stack técnico
+
+| Categoría | Tecnologías |
+|---|---|
+| Cloud & IaC | AWS (S3, CloudFront, Lambda, API Gateway, DynamoDB, Bedrock, KMS, IAM), Terraform |
+| IA generativa | Amazon Bedrock (Nova Micro), Knowledge Base (RAG), Guardrails |
+| CI/CD | GitHub Actions, OIDC |
+| Lenguajes | Python, HCL |
+
+## Cómo desplegar (WSL/Linux)
 
 ```bash
 cd infra/frontend
@@ -36,12 +75,18 @@ terraform plan
 terraform apply
 ```
 
-## Estimated cost
+## Coste estimado
 
-- S3 + CloudFront + Route53: a few cents/month with low traffic.
-- Lambda + API Gateway + DynamoDB: covered by the free tier in most cases.
-- Bedrock (Nova Micro): pay-per-token, check the CloudWatch billing alarm configured for this project.
+| Componente | Coste aproximado |
+|---|---|
+| S3 + CloudFront + Route 53 | Unos pocos centavos al mes con tráfico bajo |
+| Lambda + API Gateway + DynamoDB | Cubierto por la capa gratuita en la mayoría de casos |
+| Bedrock (Nova Micro) | Pago por token; alarma de CloudWatch Billing configurada para este proyecto |
 
-## Author
+## Demo
 
-Portfolio project - Junior Cloud Engineer / AWS Solutions Architect Associate + AI Practitioner.
+🔗 Sitio en vivo: *(añade aquí el enlace a tu GitHub Pages una vez publicado)*
+
+---
+
+*Proyecto de portfolio — Junior Cloud Engineer / AWS Solutions Architect Associate + AI Practitioner.*
