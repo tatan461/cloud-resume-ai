@@ -1,15 +1,35 @@
 # Cloud Resume Challenge + AI (Bedrock)
 
 ![Deployment](https://img.shields.io/badge/Deployment-GitHub%20Pages-181717?style=for-the-badge&logo=github&logoColor=white)
-![IaC](https://img.shields.io/badge/IaC-Terraform-623CE4?style=for-the-badge&logo=terraform&logoColor=white)
-![Cloud](https://img.shields.io/badge/Cloud-AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=FF9900)
-![Status](https://img.shields.io/badge/Status-Complete-2ea44f?style=for-the-badge&logo=checkmarx&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-232F3E?style=for-the-badge)
+![IaC](https://img.shields.io/badge/IaC-Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
+![Cloud](https://img.shields.io/badge/Cloud-AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=232F3E)
+![Status](https://img.shields.io/badge/Status-Active-F5A623?style=for-the-badge&logo=circleci&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-2D2D2D?style=for-the-badge)
 
 Professional portfolio combining a high-performance static resume with a conversational AI assistant (RAG) capable of answering questions about my background and projects. The full AWS architecture is designed and provisioned as code with Terraform; the frontend is deployed via GitHub Pages while the serverless backend — including the AI chatbot — runs entirely on AWS, deployed through a GitHub Actions CI/CD pipeline authenticated via OIDC.
 
-**Author:** Jonathan Ángel González — Junior Cloud Engineer | [AWS Solutions Architect Associate](https://www.credly.com/badges/acb43683-5fc4-49c8-821f-7a49d90f2c74) · [AWS AI Practitioner](https://www.credly.com/badges/4bea0010-dd3b-4433-be2c-d2b46f1915d0)
-[LinkedIn](https://linkedin.com/in/jonathan-angel-gonzalez-0543b441a) · [GitHub](https://github.com/tatan461)
+**Author:** Jonathan Ángel González — Junior Cloud Engineer
+
+[![AWS SAA](https://img.shields.io/badge/AWS-Solutions%20Architect%20Associate-FF9900?style=flat-square&logo=amazonaws&logoColor=232F3E)](https://www.credly.com/badges/acb43683-5fc4-49c8-821f-7a49d90f2c74)
+[![AWS AIP](https://img.shields.io/badge/AWS-AI%20Practitioner-FF9900?style=flat-square&logo=amazonaws&logoColor=232F3E)](https://www.credly.com/badges/4bea0010-dd3b-4433-be2c-d2b46f1915d0)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Jonathan%20%C3%81ngel%20Gonz%C3%A1lez-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/jonathan-angel-gonzalez-0543b441a)
+[![GitHub](https://img.shields.io/badge/GitHub-tatan461-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/tatan461)
+
+---
+
+## Contents
+
+- [Why this project](#why-this-project)
+- [Live demo](#live-demo)
+- [See it in action](#see-it-in-action)
+- [Architecture](#architecture)
+- [Project phases](#project-phases)
+- [Architecture decisions](#architecture-decisions)
+- [Tech stack](#tech-stack)
+- [How to deploy](#how-to-deploy-wsllinux)
+- [Estimated cost](#estimated-cost)
+- [Lessons learned](#lessons-learned)
+- [Roadmap](#roadmap)
 
 ---
 
@@ -21,11 +41,19 @@ This repository is my implementation of the [Cloud Resume Challenge](https://clo
 
 🔗 **Site:** [tatan461.github.io/cloud-resume-ai](https://tatan461.github.io/cloud-resume-ai/)
 
-Ask the chat widget on the site something like *"What AWS experience does Jonathan have?"* — it's answered live by the Bedrock-powered RAG pipeline described below, not a canned response.
-
 <!-- Optional: add a screenshot of the homepage once available
 ![Homepage screenshot](docs/images/homepage.png)
 -->
+
+## See it in action
+
+The chat widget on the site is backed by a real Bedrock RAG pipeline, not a scripted response. Example:
+
+> **You:** What AWS experience does Jonathan have?
+>
+> **Assistant:** Jonathan holds the AWS Solutions Architect – Associate and AWS AI Practitioner certifications, and built this entire project's infrastructure — S3, CloudFront, Lambda, API Gateway, DynamoDB, and Bedrock — as code with Terraform, deployed through a GitHub Actions pipeline authenticated via OIDC.
+
+Ask it anything about the projects, certifications, or the stack itself — off-topic questions are filtered out by Bedrock Guardrails.
 
 ## Architecture
 
@@ -62,12 +90,25 @@ The entire backend stack is defined as code and deployed via Terraform through a
 
 ## Tech stack
 
-| Category | Technologies |
-|---|---|
-| Cloud & IaC | AWS (S3, CloudFront, Lambda, API Gateway, DynamoDB, Bedrock, S3 Vectors, KMS, IAM), Terraform |
-| Generative AI | Amazon Bedrock (Nova Micro), Knowledge Base (RAG), Guardrails |
-| CI/CD | GitHub Actions, OIDC |
-| Languages | Python, HCL |
+**Cloud & IaC**
+
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=FF9900)
+![Terraform](https://img.shields.io/badge/Terraform-232F3E?style=for-the-badge&logo=terraform&logoColor=7B42BC)
+![S3](https://img.shields.io/badge/Amazon%20S3-232F3E?style=for-the-badge&logo=amazons3&logoColor=FF9900)
+![CloudFront](https://img.shields.io/badge/CloudFront-232F3E?style=for-the-badge&logo=amazonaws&logoColor=FF9900)
+![Lambda](https://img.shields.io/badge/AWS%20Lambda-232F3E?style=for-the-badge&logo=awslambda&logoColor=FF9900)
+![API Gateway](https://img.shields.io/badge/API%20Gateway-232F3E?style=for-the-badge&logo=amazonapigateway&logoColor=FF9900)
+![DynamoDB](https://img.shields.io/badge/DynamoDB-232F3E?style=for-the-badge&logo=amazondynamodb&logoColor=FF9900)
+
+**Generative AI**
+
+![Bedrock](https://img.shields.io/badge/Amazon%20Bedrock-232F3E?style=for-the-badge&logo=amazonaws&logoColor=8A3FFC)
+
+**CI/CD & Languages**
+
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-232F3E?style=for-the-badge&logo=githubactions&logoColor=2088FF)
+![Python](https://img.shields.io/badge/Python-232F3E?style=for-the-badge&logo=python&logoColor=3776AB)
+![HCL](https://img.shields.io/badge/HCL-232F3E?style=for-the-badge&logo=terraform&logoColor=7B42BC)
 
 ## How to deploy (WSL/Linux)
 
