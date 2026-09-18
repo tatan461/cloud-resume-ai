@@ -1,10 +1,10 @@
 # Cloud Resume Challenge + AI (Bedrock)
 
-[![Deployment](https://img.shields.io/badge/deployment-github--pages-success)]()
-[![IaC](https://img.shields.io/badge/IaC-Terraform-623CE4)]()
-[![Cloud](https://img.shields.io/badge/cloud-AWS-FF9900)]()
-[![Status](https://img.shields.io/badge/status-complete-brightgreen)]()
-[![License](https://img.shields.io/badge/license-MIT-blue)]()
+![Deployment](https://img.shields.io/badge/Deployment-GitHub%20Pages-181717?style=for-the-badge&logo=github&logoColor=white)
+![IaC](https://img.shields.io/badge/IaC-Terraform-623CE4?style=for-the-badge&logo=terraform&logoColor=white)
+![Cloud](https://img.shields.io/badge/Cloud-AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=FF9900)
+![Status](https://img.shields.io/badge/Status-Complete-2ea44f?style=for-the-badge&logo=checkmarx&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-232F3E?style=for-the-badge)
 
 Professional portfolio combining a high-performance static resume with a conversational AI assistant (RAG) capable of answering questions about my background and projects. The full AWS architecture is designed and provisioned as code with Terraform; the frontend is deployed via GitHub Pages while the serverless backend — including the AI chatbot — runs entirely on AWS, deployed through a GitHub Actions CI/CD pipeline authenticated via OIDC.
 
