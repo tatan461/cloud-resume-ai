@@ -1,16 +1,8 @@
 # Cloud Resume Challenge + AI (Bedrock)
 
-![Deployment](https://img.shields.io/badge/Deployment-GitHub%20Pages-181717?style=for-the-badge&logo=github&logoColor=white)
-![IaC](https://img.shields.io/badge/IaC-Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
-![Cloud](https://img.shields.io/badge/Cloud-AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=232F3E)
-![Status](https://img.shields.io/badge/Status-Active-F5A623?style=for-the-badge&logo=circleci&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-2D2D2D?style=for-the-badge)
+![Deployment](https://img.shields.io/badge/Deployment-GitHub%20Pages-181717?style=for-the-badge&logo=github&logoColor=white)&nbsp;&nbsp;![IaC](https://img.shields.io/badge/IaC-Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)&nbsp;&nbsp;![Cloud](https://img.shields.io/badge/Cloud-AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=232F3E)&nbsp;&nbsp;![Status](https://img.shields.io/badge/Status-Active-F5A623?style=for-the-badge&logo=circleci&logoColor=white)&nbsp;&nbsp;![License](https://img.shields.io/badge/License-MIT-2D2D2D?style=for-the-badge)
 
-[![AWS Solutions Architect](https://img.shields.io/badge/AWS%20Cert-Solutions%20Architect%20Associate-FF9900?style=flat-square&logo=amazonaws&logoColor=232F3E)](https://www.credly.com/badges/acb43683-5fc4-49c8-821f-7a49d90f2c74)
-[![AWS AI Practitioner](https://img.shields.io/badge/AWS%20Cert-AI%20Practitioner-FF9900?style=flat-square&logo=amazonaws&logoColor=232F3E)](https://www.credly.com/badges/4bea0010-dd3b-4433-be2c-d2b46f1915d0)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Jonathan%20%C3%81ngel%20Gonz%C3%A1lez-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/jonathan-angel-gonzalez-0543b441a)
-[![GitHub](https://img.shields.io/badge/GitHub-tatan461-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/tatan461)
-
+[![AWS SAA](https://img.shields.io/badge/AWS-Solutions%20Architect%20Associate-FF9900?style=flat-square&logo=amazonaws&logoColor=232F3E)](https://www.credly.com/badges/acb43683-5fc4-49c8-821f-7a49d90f2c74)&nbsp;&nbsp;[![AWS AIP](https://img.shields.io/badge/AWS-AI%20Practitioner-FF9900?style=flat-square&logo=amazonaws&logoColor=232F3E)](https://www.credly.com/badges/4bea0010-dd3b-4433-be2c-d2b46f1915d0)&nbsp;&nbsp;[![LinkedIn](https://img.shields.io/badge/LinkedIn-Jonathan%20%C3%81ngel%20Gonz%C3%A1lez-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/jonathan-angel-gonzalez-0543b441a)&nbsp;&nbsp;[![GitHub](https://img.shields.io/badge/GitHub-tatan461-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/tatan461)
 ---
 
 **🚀 Project Overview**  
