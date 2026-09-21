@@ -10,15 +10,12 @@ variable "github_repo" {
   default     = "cloud-resume-ai"
 }
 
-# OIDC provider that trusts GitHub Actions tokens.
-# AWS accounts only need ONE of these total, reused by all repos/roles.
 resource "aws_iam_openid_connect_provider" "github" {
   url             = "https://token.actions.githubusercontent.com"
   client_id_list  = ["sts.amazonaws.com"]
   thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
 }
 
-# Trust policy: only THIS repo, pushing to THIS branch, can assume this role.
 data "aws_iam_policy_document" "github_actions_trust" {
   statement {
     effect  = "Allow"
@@ -40,7 +37,6 @@ data "aws_iam_policy_document" "github_actions_trust" {
       variable = "token.actions.githubusercontent.com:sub"
       values   = ["repo:${var.github_owner}@96512611/${var.github_repo}@1375208092:*"]
     }
-
   }
 }
 
@@ -49,8 +45,8 @@ resource "aws_iam_role" "github_actions_deploy" {
   assume_role_policy = data.aws_iam_policy_document.github_actions_trust.json
 }
 
-# Minimal permissions needed to sync the frontend to S3 and invalidate CloudFront.
-# Tighten the Resource ARNs once your S3 bucket and CloudFront distribution exist.
+data "aws_caller_identity" "current" {}
+
 resource "aws_iam_role_policy" "github_actions_deploy_policy" {
   name = "github-actions-deploy-policy"
   role = aws_iam_role.github_actions_deploy.id
@@ -59,7 +55,7 @@ resource "aws_iam_role_policy" "github_actions_deploy_policy" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid    = "TerraformStateAndCoreServices"
+        Sid    = "CoreServices"
         Effect = "Allow"
         Action = [
           "s3:*",
@@ -68,26 +64,20 @@ resource "aws_iam_role_policy" "github_actions_deploy_policy" {
           "apigateway:*",
           "bedrock:*",
           "budgets:*",
-          "cloudfront:CreateInvalidation",
-          "iam:GetRole",
-          "iam:CreateRole",
-          "iam:DeleteRole",
-          "iam:PutRolePolicy",
-          "iam:DeleteRolePolicy",
-          "iam:GetRolePolicy",
-          "iam:AttachRolePolicy",
-          "iam:DetachRolePolicy",
-          "iam:PassRole",
-          "iam:TagRole",
-          "iam:ListRolePolicies",
-          "iam:ListAttachedRolePolicies",
-          "iam:GetOpenIDConnectProvider",
-          "iam:CreateOpenIDConnectProvider",
-          "iam:DeleteOpenIDConnectProvider",
-          "iam:TagOpenIDConnectProvider",
+          "dynamodb:*",
+          "cloudfront:*",
           "sts:GetCallerIdentity"
         ]
         Resource = "*"
+      },
+      {
+        Sid    = "IAMManagementForProjectRoles"
+        Effect = "Allow"
+        Action = ["iam:*"]
+        Resource = [
+          "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/cloud-resume-ai-*",
+          "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/token.actions.githubusercontent.com"
+        ]
       }
     ]
   })
