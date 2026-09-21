@@ -38,8 +38,9 @@ data "aws_iam_policy_document" "github_actions_trust" {
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:${var.github_owner}/${var.github_repo}:*"]
+      values   = ["repo:${var.github_owner}@96512611/${var.github_repo}@1375208092:*"]
     }
+
   }
 }
 
@@ -58,21 +59,30 @@ resource "aws_iam_role_policy" "github_actions_deploy_policy" {
     Version = "2012-10-17"
     Statement = [
       {
+        Sid    = "TerraformStateAndCoreServices"
         Effect = "Allow"
         Action = [
-          "s3:GetObject",
-          "s3:PutObject",
-          "s3:DeleteObject",
-          "s3:ListBucket"
+          "s3:*",
+          "s3vectors:*",
+          "lambda:*",
+          "apigateway:*",
+          "bedrock:*",
+          "budgets:*",
+          "cloudfront:CreateInvalidation",
+          "iam:GetRole",
+          "iam:CreateRole",
+          "iam:DeleteRole",
+          "iam:PutRolePolicy",
+          "iam:DeleteRolePolicy",
+          "iam:GetRolePolicy",
+          "iam:AttachRolePolicy",
+          "iam:DetachRolePolicy",
+          "iam:PassRole",
+          "iam:TagRole",
+          "iam:ListRolePolicies",
+          "iam:ListAttachedRolePolicies",
+          "sts:GetCallerIdentity"
         ]
-        Resource = [
-          "arn:aws:s3:::*",
-          "arn:aws:s3:::*/*"
-        ]
-      },
-      {
-        Effect   = "Allow"
-        Action   = ["cloudfront:CreateInvalidation"]
         Resource = "*"
       }
     ]
