@@ -1,0 +1,74 @@
+name: Deploy Chatbot Infrastructure
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "infra/chatbot/**"
+  workflow_dispatch: {}
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  terraform:
+    name: Terraform plan & apply
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra/chatbot
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+          role-session-name: github-actions-${{ github.run_id }}
+
+      - name: Verify assumed identity
+        run: aws sts get-caller-identity
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.0"
+
+      - name: Terraform fmt check
+        run: terraform fmt -check -recursive
+
+      - name: Terraform init
+        run: terraform init
+
+      - name: Terraform validate
+        run: terraform validate
+
+      - name: Terraform plan
+        run: terraform plan -input=false
+        env:
+          TF_VAR_budget_alert_email: ${{ secrets.BUDGET_ALERT_EMAIL }}
+
+      - name: Terraform apply
+        if: github.ref == 'refs/heads/main'
+        run: terraform apply -input=false -auto-approve
+        env:
+          TF_VAR_budget_alert_email: ${{ secrets.BUDGET_ALERT_EMAIL }}
+
+# NOTE: the static frontend (docs/index.html) is currently served via
+# GitHub Pages, which deploys automatically on push without any AWS step.
+# If the frontend is ever migrated to S3 + CloudFront (infra/frontend/),
+# add a second job here that syncs docs/ to that bucket and invalidates
+# the CloudFront distribution, using the same OIDC role.
+#
+# One-time setup required for this workflow to run (already done if you
+# created the AWS_ROLE_ARN repository variable and the BUDGET_ALERT_EMAIL
+# repository secret under Settings > Secrets and variables > Actions):
+#   - AWS_ROLE_ARN (Variables tab)  -> arn:aws:iam::<ACCOUNT_ID>:role/github-actions-deploy-role
+#   - BUDGET_ALERT_EMAIL (Secrets tab) -> email address to receive AWS Budget alerts
