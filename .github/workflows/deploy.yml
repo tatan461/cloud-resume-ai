@@ -48,7 +48,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "1.9.0"
+          terraform_version: "1.16.2"
 
       - name: Terraform fmt check
         run: terraform fmt -check -recursive
@@ -78,4 +78,4 @@ jobs:
 #
 # One-time setup (already done):
 #   - AWS_ROLE_ARN (repo Variables)  -> arn:aws:iam::378356708535:role/github-actions-deploy-role
-#   - BUDGET_ALERT_EMAIL (repo Secrets) -> email for AWS Budget alerts
+#   - BUDGET_ALERT_EMAIL (repo Secrets) -> email for AWS Budget alertsc
