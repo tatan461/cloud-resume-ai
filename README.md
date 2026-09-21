@@ -6,16 +6,18 @@
 ![Status](https://img.shields.io/badge/Status-Active-F5A623?style=for-the-badge&logo=circleci&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-2D2D2D?style=for-the-badge)
 
-**[Live Demo](https://tatan461.github.io/cloud-resume-ai/)** · **[LinkedIn](https://linkedin.com/in/jonathan-angel-gonzalez-0543b441a)** · **[GitHub](https://github.com/tatan461)**
-
-Professional portfolio combining a high-performance static resume with a conversational AI assistant (RAG) capable of answering questions about my background and projects. The full AWS architecture is designed and provisioned as code with Terraform; the frontend is currently deployed via GitHub Pages, while the serverless backend — including the AI chatbot — runs entirely on AWS, deployed through a GitHub Actions CI/CD pipeline authenticated via OIDC.
-
-**Author:** Jonathan Ángel González — Junior Cloud Engineer
-
-[![AWS SAA](https://img.shields.io/badge/AWS-Solutions%20Architect%20Associate-FF9900?style=flat-square&logo=amazonaws&logoColor=232F3E)](https://www.credly.com/badges/acb43683-5fc4-49c8-821f-7a49d90f2c74)
-[![AWS AIP](https://img.shields.io/badge/AWS-AI%20Practitioner-FF9900?style=flat-square&logo=amazonaws&logoColor=232F3E)](https://www.credly.com/badges/4bea0010-dd3b-4433-be2c-d2b46f1915d0)
+[![AWS Solutions Architect](https://img.shields.io/badge/AWS%20Cert-Solutions%20Architect%20Associate-FF9900?style=flat-square&logo=amazonaws&logoColor=232F3E)](https://www.credly.com/badges/acb43683-5fc4-49c8-821f-7a49d90f2c74)
+[![AWS AI Practitioner](https://img.shields.io/badge/AWS%20Cert-AI%20Practitioner-FF9900?style=flat-square&logo=amazonaws&logoColor=232F3E)](https://www.credly.com/badges/4bea0010-dd3b-4433-be2c-d2b46f1915d0)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Jonathan%20%C3%81ngel%20Gonz%C3%A1lez-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/jonathan-angel-gonzalez-0543b441a)
 [![GitHub](https://img.shields.io/badge/GitHub-tatan461-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/tatan461)
+
+---
+
+> **🚀 Project Overview**  
+> A production-grade, serverless Cloud Resume Challenge enhanced with an **AI-powered RAG chatbot** using Amazon Bedrock.  
+> Fully automated via **Terraform (IaC)** and **GitHub Actions (OIDC)**, delivering a secure, cost-optimized architecture ($0.02–$0.05/day) with zero manual console steps.
+
+[![Live Demo](https://img.shields.io/badge/DEMO-Live%20Site-4285F4?style=for-the-badge&logo=github&color=white)](https://tatan461.github.io/cloud-resume-ai/)
 
 ---
 
@@ -41,21 +43,26 @@ This repository is my implementation of the [Cloud Resume Challenge](https://clo
 
 ## Live demo
 
-[![Live Demo](https://img.shields.io/badge/DEMO-Live%20Site-4285F4?style=for-the-badge&logo=github&color=white)](https://tatan461.github.io/cloud-resume-ai/)
+**Site:** [tatan461.github.io/cloud-resume-ai](https://tatan461.github.io/cloud-resume-ai/)
 
-<!-- Optional: add a screenshot of the homepage once available
-![Homepage screenshot](docs/images/homepage.png)
+<!-- Optional: Add a screenshot here if you have one
+![Homepage Screenshot](docs/images/homepage.png)
 -->
+
+---
 
 ## See it in action
 
-The chat widget on the site is backed by a real Bedrock RAG pipeline, not a scripted response. Sample exchange:
+The chat widget is backed by a **real Bedrock RAG pipeline**, not scripted responses. It answers questions about my background, certifications, and project architecture, while filtering off-topic queries via **Bedrock Guardrails**.
 
-**User:** "What AWS experience does Jonathan have?"
+**Sample Interaction:**
 
-**Assistant:** "Jonathan holds the AWS Solutions Architect – Associate and AWS AI Practitioner certifications, and built this entire project's infrastructure — S3, CloudFront, Lambda, API Gateway, DynamoDB, and Bedrock — as code with Terraform, deployed through a GitHub Actions pipeline authenticated via OIDC."
+> **User:** *"What AWS experience does Jonathan have?"*  
+> **Assistant:** *"Jonathan holds the AWS Solutions Architect – Associate and AWS AI Practitioner certifications, and built this entire project's infrastructure — S3, CloudFront, Lambda, API Gateway, DynamoDB, and Bedrock — as code with Terraform, deployed through a GitHub Actions pipeline authenticated via OIDC."*
 
-Ask it anything about the projects, certifications, or the stack itself — off-topic questions are filtered out by Bedrock Guardrails.
+👉 **Try asking:** *"How was the chatbot deployed?"*, *"What certifications does Jonathan have?"*, or *"Describe the architecture."*
+
+---
 
 ## Architecture
 
