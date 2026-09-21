@@ -251,6 +251,23 @@ h2 { color: var(--navy); font-size: 1.4rem; margin-bottom: 0.4rem; border-bottom
 #chat-send:focus-visible { outline: 2px solid var(--navy); outline-offset: 1px; }
 #chat-send:disabled { opacity: 0.6; cursor: not-allowed; }
 
+.language-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+
+.language-badge {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fafbfc;
+  color: var(--navy);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
 .contact-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.8rem; }
 .contact-grid a { color: var(--navy); text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.88rem; transition: background 0.15s ease; }
 .contact-grid a:hover { background: var(--gray-bg); }
@@ -377,11 +394,15 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
     <div class="exp-item"><div class="exp-header"><h3>Vocational Diploma in Microcomputer Systems and Networks</h3><span class="exp-date">2020 - 2022</span></div><p class="exp-company">IES No. 1 - Gijon, Asturias, Spain</p><p>Basic Windows/Linux systems administration, local network setup, and user technical support.</p></div>
   </section>
 
-  <section id="languages"><h2>Languages</h2><p>Spanish - Native &nbsp;|&nbsp; English - Advanced (C1)</p></section>
+  <div class="language-list">
+  <span class="language-badge">Spanish · Native</span>
+  <span class="language-badge">English · Advanced (C1)</span>
+</div>
+
 
   <section id="live-demo">
     <div class="live-demo-header"><h2>Live Demo</h2><span class="live-dot"></span><span class="live-label">LIVE INFRASTRUCTURE</span></div>
-    <p class="section-subtitle">This section is not a mockup. It is served by the actual AWS backend described in the Cloud Resume Challenge project above.</p>
+    <p class="section-subtitle">This live section is powered by the AWS backend described in the Cloud Resume Challenge project above.</p>
     <div class="demo-stat-row">
       <div class="demo-stat-card"><span class="demo-stat-icon">&#128065;</span><span class="demo-stat-value" id="visit-count">...</span><span class="demo-stat-label">Site Visits</span><span class="demo-stat-source">API Gateway &rarr; Lambda &rarr; DynamoDB</span></div>
       <div class="demo-stat-card"><span class="demo-stat-icon">&#129302;</span><span class="demo-stat-value">Nova Micro</span><span class="demo-stat-label">AI Model</span><span class="demo-stat-source">Amazon Bedrock + Guardrails</span></div>
@@ -392,7 +413,7 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
   <section id="contact">
     <h2>Contact</h2>
     <p>I'm currently open to Junior Cloud / DevOps Engineer roles, remote-first.</p>
-    <div class="contact-grid"><a href="mailto:jonathan.angel.tech@gmail.com">jonathan.angel.tech@gmail.com</a><a href="tel:+34643273718">+34 643 273 718</a><a href="https://linkedin.com/in/jonathan-angel-gonzalez-0543b441a" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/tatan461" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+    <div class="contact-grid"><a href="mailto:jonathan.angel.tech@gmail.com">jonathan.angel.tech@gmail.com</a><a href="https://linkedin.com/in/jonathan-angel-gonzalez-0543b441a" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/tatan461" target="_blank" rel="noopener noreferrer">GitHub</a></div>
   </section>
 </main>
 
