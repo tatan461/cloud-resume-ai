@@ -68,7 +68,7 @@ User → CloudFront (CDN + HTTPS) → S3 (static site, private bucket with OAC),
 - API Gateway → Lambda (visit counter) → DynamoDB
 - API Gateway (rate-limited) → Lambda (AI chatbot) → Bedrock Guardrails → Bedrock Knowledge Base (RAG, S3 Vectors) → Amazon Nova Micro model
 
-This CloudFront + S3 path is the production-ready design, fully defined in the `frontend` Terraform module. The site currently live at the demo link above runs on GitHub Pages instead (see [Architecture decisions](#architecture-decisions) for why), while the visit-counter and chatbot backends already run on AWS exactly as diagrammed. The entire backend stack is defined as code and deployed via Terraform through a GitHub Actions pipeline, with no resources created manually through the AWS Console and no static AWS credentials stored anywhere in the repository.
+This CloudFront + S3 path is the production-ready design, fully defined in the `frontend` Terraform module. The site currently live at the demo link above runs on GitHub Pages instead (see [Architecture decisions](#architecture-decisions) for why), while the visit-counter and chatbot backends already run on AWS exactly as diagrammed. The entire backend stack is defined as code and deployed via Terraform through a GitHub Actions pipeline, with no resources created manually through the AWS Console, and no static AWS credentials stored anywhere in the repository.
 
 ## Project phases
 
@@ -89,8 +89,8 @@ All six core phases of the challenge are complete. The items in [Roadmap](#roadm
 - **Bedrock Guardrails:** prevents the chatbot from answering off-topic questions or leaking sensitive information.
 - **OIDC authentication in GitHub Actions:** no static AWS credentials stored as secrets; the trust policy scopes `AssumeRoleWithWebIdentity` to this exact repo on the `main` branch only.
 - **API Gateway rate limiting on the chatbot endpoint:** throttles requests to prevent abuse and keeps Bedrock token spend predictable.
-- **Custom prompt template for the chatbot:** tuned for short, conversational answers instead of long generic LLM responses.
-- **GitHub Pages for the current frontend deployment:** zero cost and zero billing risk for static hosting while job-hunting. The S3 + CloudFront + Route 53 module stays fully written and ready in Terraform for when a custom domain is worth the roughly $1–2/month it adds.
+- **Custom prompt template for the chatbot:** tuned for short, conversational answers instead of long, generic LLM responses.
+- **GitHub Pages for the current frontend deployment:** zero cost and zero billing risk for static hosting while job-hunting. The S3 + CloudFront + Route 53 module remains fully written and ready in Terraform for when a custom domain is worth the roughly $1–2/month it adds.
 
 ## Tech stack
 
@@ -116,20 +116,22 @@ All six core phases of the challenge are complete. The items in [Roadmap](#roadm
 
 ## How to deploy (WSL/Linux)
 
+Run each module from the repository root, one after another:
+
 ```bash
-# Backend: OIDC provider + IAM role for GitHub Actions
+# 1. Backend: OIDC provider + IAM role for GitHub Actions
 cd infra/backend
 terraform init
 terraform plan
 terraform apply
 
-# Frontend: static site hosting
+# 2. Frontend: static site hosting
 cd ../frontend
 terraform init
 terraform plan
 terraform apply
 
-# Chatbot: Lambda + API Gateway + Bedrock Knowledge Base + Guardrails
+# 3. Chatbot: Lambda + API Gateway + Bedrock Knowledge Base + Guardrails
 cd ../chatbot
 terraform init
 terraform plan
@@ -150,10 +152,10 @@ terraform apply
 ## Lessons learned
 
 - **Cost-consciousness matters as much as architecture.** Before deploying anything, I compared the real monthly cost of S3 + CloudFront + Route 53 against GitHub Pages. The AWS stack is cheap (roughly $1–2/month), but as a job-seeking junior engineer, starting at $0 with GitHub Pages removed any billing risk while I kept building — the Terraform module for the AWS stack stayed ready to apply later.
-- **Domain registrar pricing has hidden traps.** Comparing registrars taught me that "cheap first year" prices (Namecheap, GoDaddy) often hide renewal costs 2–3x higher; flat-rate registrars like Cloudflare or Porkbun are cheaper over a 5-year horizon even if the first-year price looks less attractive.
+- **Domain registrar pricing has hidden traps.** Comparing registrars taught me that "cheap first year" prices (Namecheap, GoDaddy) often hide renewal costs 2–3x higher; flat-rate registrars like Cloudflare or Porkbun are cheaper over a five-year horizon even if the first-year price looks less attractive.
 - **Diagrams-as-code beats ASCII art.** Switching the architecture diagram from a plain-text flow to a `.drawio` file with official AWS icons made the README noticeably more professional and easier to scan for recruiters.
-- **OIDC trust policies fail silently and specifically.** A `sub` claim scoped to `refs/heads/main` will reject pull requests, tags, and manual `workflow_dispatch` runs from other branches with a plain `AccessDenied` — worth testing the exact trigger you'll use in production before assuming the role is broken.
-- **Terraform state ordering matters during partial failures.** When an `apply` fails midway (e.g. a duplicate OIDC provider), later resources that depend on the failed one are simply never created — `terraform state list` is the fastest way to confirm what actually exists versus what the code expects.
+- **OIDC trust policies fail silently and specifically.** A `sub` claim scoped to `refs/heads/main` rejects pull requests, tags, and manual `workflow_dispatch` runs from other branches with a plain `AccessDenied` — worth testing the exact trigger you'll use in production before assuming the role itself is broken.
+- **Terraform state ordering matters during partial failures.** When an `apply` fails midway (for example, a duplicate OIDC provider), later resources that depend on the failed one are simply never created — `terraform state list` is the fastest way to confirm what actually exists versus what the code expects.
 
 ## Roadmap
 
