@@ -13,9 +13,9 @@
 
 ---
 
-> **🚀 Project Overview**  
-> A production-grade, serverless Cloud Resume Challenge enhanced with an **AI-powered RAG chatbot** using Amazon Bedrock.  
-> Fully automated via **Terraform (IaC)** and **GitHub Actions (OIDC)**, delivering a secure, cost-optimized architecture ($0.02–$0.05/day) with zero manual console steps.
+**🚀 Project Overview**  
+A production-grade, serverless Cloud Resume Challenge enhanced with an **AI-powered RAG chatbot** using Amazon Bedrock.  
+Fully automated via **Terraform (IaC)** and **GitHub Actions (OIDC)**, delivering a secure, cost-optimized architecture ($0.02–$0.05/day) with zero manual console steps.
 
 [![Live Demo](https://img.shields.io/badge/DEMO-Live%20Site-4285F4?style=for-the-badge&logo=github&color=white)](https://tatan461.github.io/cloud-resume-ai/)
 
