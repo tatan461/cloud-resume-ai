@@ -41,7 +41,7 @@ This repository is my implementation of the [Cloud Resume Challenge](https://clo
 
 ## Live demo
 
-**Site:** [tatan461.github.io/cloud-resume-ai](https://tatan461.github.io/cloud-resume-ai/)
+[![Live Demo](https://img.shields.io/badge/DEMO-Live%20Site-4285F4?style=for-the-badge&logo=github&color=white)](https://tatan461.github.io/cloud-resume-ai/)
 
 <!-- Optional: add a screenshot of the homepage once available
 ![Homepage screenshot](docs/images/homepage.png)
