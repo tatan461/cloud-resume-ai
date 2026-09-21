@@ -6,7 +6,9 @@
 ![Status](https://img.shields.io/badge/Status-Active-F5A623?style=for-the-badge&logo=circleci&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-2D2D2D?style=for-the-badge)
 
-Professional portfolio combining a high-performance static resume with a conversational AI assistant (RAG) capable of answering questions about my background and projects. The full AWS architecture is designed and provisioned as code with Terraform; the frontend is deployed via GitHub Pages while the serverless backend — including the AI chatbot — runs entirely on AWS, deployed through a GitHub Actions CI/CD pipeline authenticated via OIDC.
+**[Live Demo](https://tatan461.github.io/cloud-resume-ai/)** · **[LinkedIn](https://linkedin.com/in/jonathan-angel-gonzalez-0543b441a)** · **[GitHub](https://github.com/tatan461)**
+
+Professional portfolio combining a high-performance static resume with a conversational AI assistant (RAG) capable of answering questions about my background and projects. The full AWS architecture is designed and provisioned as code with Terraform; the frontend is currently deployed via GitHub Pages, while the serverless backend — including the AI chatbot — runs entirely on AWS, deployed through a GitHub Actions CI/CD pipeline authenticated via OIDC.
 
 **Author:** Jonathan Ángel González — Junior Cloud Engineer
 
@@ -39,7 +41,7 @@ This repository is my implementation of the [Cloud Resume Challenge](https://clo
 
 ## Live demo
 
-🔗 **Site:** [tatan461.github.io/cloud-resume-ai](https://tatan461.github.io/cloud-resume-ai/)
+**Site:** [tatan461.github.io/cloud-resume-ai](https://tatan461.github.io/cloud-resume-ai/)
 
 <!-- Optional: add a screenshot of the homepage once available
 ![Homepage screenshot](docs/images/homepage.png)
@@ -47,17 +49,17 @@ This repository is my implementation of the [Cloud Resume Challenge](https://clo
 
 ## See it in action
 
-The chat widget on the site is backed by a real Bedrock RAG pipeline, not a scripted response. Example:
+The chat widget on the site is backed by a real Bedrock RAG pipeline, not a scripted response. Sample exchange:
 
-> **You:** What AWS experience does Jonathan have?
->
-> **Assistant:** Jonathan holds the AWS Solutions Architect – Associate and AWS AI Practitioner certifications, and built this entire project's infrastructure — S3, CloudFront, Lambda, API Gateway, DynamoDB, and Bedrock — as code with Terraform, deployed through a GitHub Actions pipeline authenticated via OIDC.
+**User:** "What AWS experience does Jonathan have?"
+
+**Assistant:** "Jonathan holds the AWS Solutions Architect – Associate and AWS AI Practitioner certifications, and built this entire project's infrastructure — S3, CloudFront, Lambda, API Gateway, DynamoDB, and Bedrock — as code with Terraform, deployed through a GitHub Actions pipeline authenticated via OIDC."
 
 Ask it anything about the projects, certifications, or the stack itself — off-topic questions are filtered out by Bedrock Guardrails.
 
 ## Architecture
 
-<img src="docs/images/architecture.png" alt="Cloud Resume AI Architecture" width="100%">
+<img src="docs/images/architecture.png" alt="AWS architecture diagram: CloudFront distributing a private S3 static site, branching into a visit-counter path (API Gateway, Lambda, DynamoDB) and an AI chatbot path (rate-limited API Gateway, Lambda, Bedrock Guardrails, Bedrock Knowledge Base with S3 Vectors, and the Amazon Nova Micro model)" width="100%">
 
 **Flow summary:**
 
@@ -66,27 +68,29 @@ User → CloudFront (CDN + HTTPS) → S3 (static site, private bucket with OAC),
 - API Gateway → Lambda (visit counter) → DynamoDB
 - API Gateway (rate-limited) → Lambda (AI chatbot) → Bedrock Guardrails → Bedrock Knowledge Base (RAG, S3 Vectors) → Amazon Nova Micro model
 
-The entire backend stack is defined as code and deployed via Terraform through a GitHub Actions pipeline, with no resources created manually through the AWS Console and no static AWS credentials stored anywhere in the repository.
+This CloudFront + S3 path is the production-ready design, fully defined in the `frontend` Terraform module. The site currently live at the demo link above runs on GitHub Pages instead (see [Architecture decisions](#architecture-decisions) for why), while the visit-counter and chatbot backends already run on AWS exactly as diagrammed. The entire backend stack is defined as code and deployed via Terraform through a GitHub Actions pipeline, with no resources created manually through the AWS Console and no static AWS credentials stored anywhere in the repository.
 
 ## Project phases
 
-- [x] **Phase 1** — Static frontend (S3 + CloudFront + ACM + Route 53 / GitHub Pages)
+- [x] **Phase 1** — Static frontend (S3 + CloudFront + ACM + Route 53 module, currently served via GitHub Pages)
 - [x] **Phase 2** — Visit counter backend (API Gateway + Lambda + DynamoDB)
 - [x] **Phase 3** — Full migration to Terraform
 - [x] **Phase 4** — CI/CD with GitHub Actions (OIDC authentication, no static credentials)
 - [x] **Phase 5** — AI chatbot with Bedrock Knowledge Base + Guardrails
 - [x] **Phase 6** — Chat widget on the frontend, with API Gateway rate limiting to prevent abuse
 
+All six core phases of the challenge are complete. The items in [Roadmap](#roadmap) below are optional extensions, not unfinished phases.
+
 ## Architecture decisions
 
 - **Private S3 bucket + Origin Access Control (OAC):** avoids exposing the bucket directly; only CloudFront can read it.
 - **HTTP API in API Gateway** instead of REST API: simpler and cheaper for this use case.
-- **Amazon Nova Micro model in Bedrock:** the most cost-effective option ($0.035 per million input tokens), sufficient for a portfolio RAG chatbot.
+- **Amazon Nova Micro model in Bedrock:** the most cost-effective option in the Nova family ($0.035 per million input tokens, $0.14 per million output tokens), sufficient for a portfolio RAG chatbot.
 - **Bedrock Guardrails:** prevents the chatbot from answering off-topic questions or leaking sensitive information.
 - **OIDC authentication in GitHub Actions:** no static AWS credentials stored as secrets; the trust policy scopes `AssumeRoleWithWebIdentity` to this exact repo on the `main` branch only.
 - **API Gateway rate limiting on the chatbot endpoint:** throttles requests to prevent abuse and keeps Bedrock token spend predictable.
 - **Custom prompt template for the chatbot:** tuned for short, conversational answers instead of long generic LLM responses.
-- **GitHub Pages for the frontend:** zero cost and zero billing risk for static hosting; the S3 + CloudFront + Route 53 stack stays ready in Terraform for when a custom domain is worth the ~$1–2/month it adds.
+- **GitHub Pages for the current frontend deployment:** zero cost and zero billing risk for static hosting while job-hunting. The S3 + CloudFront + Route 53 module stays fully written and ready in Terraform for when a custom domain is worth the roughly $1–2/month it adds.
 
 ## Tech stack
 
@@ -132,6 +136,8 @@ terraform plan
 terraform apply
 ```
 
+> Requires AWS credentials configured locally (`aws configure`) and IAM permissions for S3, CloudFront, Lambda, API Gateway, DynamoDB, and Bedrock.
+
 ## Estimated cost
 
 | Component | Approximate cost |
@@ -139,7 +145,7 @@ terraform apply
 | GitHub Pages (current frontend) | $0 |
 | S3 + CloudFront + Route 53 (if/when adopted) | A few cents/month with low traffic |
 | Lambda + API Gateway + DynamoDB | Covered by the free tier in most cases |
-| Bedrock (Nova Micro) | Pay-per-token; CloudWatch billing alarm + monthly AWS Budget configured for this project |
+| Bedrock (Nova Micro) | $0.035 per million input tokens / $0.14 per million output tokens — pay-per-use; a CloudWatch billing alarm and a monthly AWS Budget are configured for this project |
 
 ## Lessons learned
 
@@ -151,7 +157,7 @@ terraform apply
 
 ## Roadmap
 
-All planned phases for this portfolio are complete: static frontend, visit counter, full Terraform migration, OIDC-based CI/CD, and an AI chatbot backed by Amazon Bedrock with Guardrails, RAG, and API Gateway rate limiting.
+The core Cloud Resume Challenge is complete end-to-end: static frontend, visit counter, full Terraform migration, OIDC-based CI/CD, and an AI chatbot backed by Amazon Bedrock with Guardrails, RAG, and API Gateway rate limiting.
 
 Possible next steps if the project keeps evolving:
 
