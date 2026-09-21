@@ -26,6 +26,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # TEMPORARY DEBUG STEP — remove once OIDC works.
+      # Prints the exact "sub" claim GitHub is sending in the OIDC token,
+      # so we can match it precisely in the IAM trust policy.
+      - name: Debug OIDC token claims
+        run: |
+          TOKEN=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
+          echo "$TOKEN" | cut -d. -f2 | base64 -d 2>/dev/null | jq .
+
       - name: Configure AWS credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -67,8 +76,6 @@ jobs:
 # add a second job here that syncs docs/ to that bucket and invalidates
 # the CloudFront distribution, using the same OIDC role.
 #
-# One-time setup required for this workflow to run (already done if you
-# created the AWS_ROLE_ARN repository variable and the BUDGET_ALERT_EMAIL
-# repository secret under Settings > Secrets and variables > Actions):
-#   - AWS_ROLE_ARN (Variables tab)  -> arn:aws:iam::<ACCOUNT_ID>:role/github-actions-deploy-role
-#   - BUDGET_ALERT_EMAIL (Secrets tab) -> email address to receive AWS Budget alerts
+# One-time setup (already done):
+#   - AWS_ROLE_ARN (repo Variables)  -> arn:aws:iam::378356708535:role/github-actions-deploy-role
+#   - BUDGET_ALERT_EMAIL (repo Secrets) -> email for AWS Budget alerts
