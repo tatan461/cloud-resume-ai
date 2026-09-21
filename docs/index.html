@@ -64,31 +64,74 @@ nav {
 }
 
 .hero {
-  padding: 4.5rem 1.5rem 4rem !important;
+  position: relative;
+  width: 100%;
+  background: #102b43 !important;
+  color: #ffffff !important;
+  text-align: center !important;
+  padding: 4rem 1.5rem 3.5rem !important;
+  border: none !important;
+  box-shadow: none !important;
+  filter: none !important;
 }
 
 .hero h1 {
-  margin-bottom: 0.8rem !important;
+  color: #ffffff !important;
+  margin: 0 0 0.7rem !important;
 }
 
-.hero-role {
-  margin-bottom: 1rem !important;
+.hero .hero-role {
+  color: #ff9900 !important;
+  margin: 0 0 0.9rem !important;
 }
 
-.hero-tagline {
-  margin-bottom: 1.6rem !important;
-  line-height: 1.7;
+.hero .hero-tagline {
+  color: #cfd8e3 !important;
+  max-width: 520px;
+  margin: 0 auto 1.5rem !important;
 }
 
 .hero-badges {
-  margin-bottom: 1.8rem !important;
-  gap: 0.6rem;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 0.6rem !important;
+  margin: 0 auto 1.8rem !important;
+}
+
+.hero .badge {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
 }
 
 .hero-links {
-  gap: 0.8rem;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 1.2rem !important;
+  margin: 0 auto !important;
 }
 
+.hero-links .btn-secondary {
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  background: transparent !important;
+}
+
+.hero::after {
+  display: none !important;
+}
+
+main {
+  max-width: 900px;
+  margin: -2rem auto 0 !important;
+  padding: 0 1.5rem 3rem;
+  position: relative;
+  z-index: 2;
+}
 
 
 .badge {
