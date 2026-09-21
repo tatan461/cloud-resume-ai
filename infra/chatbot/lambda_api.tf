@@ -66,10 +66,10 @@ resource "aws_lambda_function" "chatbot" {
 
   environment {
     variables = {
-      KNOWLEDGE_BASE_ID  = aws_bedrockagent_knowledge_base.resume_kb.id
-      MODEL_ARN          = "arn:aws:bedrock:${var.aws_region}::foundation-model/${var.chat_model_id}"
-      GUARDRAIL_ID       = aws_bedrock_guardrail.resume_guardrail.guardrail_id
-      GUARDRAIL_VERSION  = aws_bedrock_guardrail_version.resume_guardrail_version.version
+      KNOWLEDGE_BASE_ID = aws_bedrockagent_knowledge_base.resume_kb.id
+      MODEL_ARN         = "arn:aws:bedrock:${var.aws_region}::foundation-model/${var.chat_model_id}"
+      GUARDRAIL_ID      = aws_bedrock_guardrail.resume_guardrail.guardrail_id
+      GUARDRAIL_VERSION = aws_bedrock_guardrail_version.resume_guardrail_version.version
     }
   }
 }
@@ -79,9 +79,11 @@ resource "aws_apigatewayv2_api" "chatbot_api" {
   protocol_type = "HTTP"
 
   cors_configuration {
-    allow_origins = ["*"]
+    allow_origins = ["https://tatan461.github.io"]
     allow_methods = ["OPTIONS", "POST"]
     allow_headers = ["Content-Type"]
+
+    max_age = 300
   }
 }
 
