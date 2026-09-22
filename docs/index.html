@@ -163,9 +163,14 @@ main {
 .badge:hover { background: rgba(255,255,255,0.25); }
 
 .badge-icon {
-  font-size: 0.95rem;
-  line-height: 1;
-  color: var(--orange);
+  width: 0.95rem;
+  height: 0.95rem;
+  fill: none;
+  stroke: var(--orange);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
 }
 
 .badge:focus-visible {
@@ -380,18 +385,22 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
     target="_blank"
     rel="noopener noreferrer"
     class="badge">
-    <span class="badge-icon" aria-hidden="true">✦</span>
+    <span class="badge-icon" aria-hidden="true">☁</span>
     AWS AI Practitioner
   </a>
 
   <a
-    href="http://cert.efset.org/wkopgM"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="badge">
-    <span class="badge-icon" aria-hidden="true">文</span>
-    EF SET English C1
-  </a>
+  href="http://cert.efset.org/wkopgM"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="badge">
+  <svg class="badge-icon" viewBox="0 0 24 24" aria-hidden="true">
+    ircle cx="12" cy="12" r="9"></circle>
+    <path d="M3 12h18"></path>
+    <path d="M12 3c2.2 2.4 3.4 5.4 3.4 9s-1.2 6.6-3.4 9c-2.2-2.4-3.4-5.4-3.4-9S9.8 5.4 12 3z"></path>
+  </svg>
+  EF SET English C1
+</a>
 </div>
 
   <div class="hero-links">
