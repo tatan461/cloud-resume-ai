@@ -8,6 +8,7 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+
 :root {
   --navy: #0b1f33;
   --orange: #ff9900;
@@ -17,7 +18,9 @@
   --border: #e2e5e9;
 }
 
+
 html { scroll-behavior: smooth; }
+
 
 body {
   font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -25,6 +28,7 @@ body {
   color: var(--text-dark);
   line-height: 1.6;
 }
+
 
 nav {
   position: sticky;
@@ -63,6 +67,7 @@ nav {
   font-weight: 700;
 }
 
+
 .hero {
   position: relative;
   width: 100%;
@@ -75,21 +80,25 @@ nav {
   filter: none !important;
 }
 
+
 .hero h1 {
   color: #ffffff !important;
   margin: 0 0 0.7rem !important;
 }
+
 
 .hero .hero-role {
   color: #ff9900 !important;
   margin: 0 0 0.9rem !important;
 }
 
+
 .hero .hero-tagline {
   color: #cfd8e3 !important;
   max-width: 520px;
   margin: 0 auto 1.5rem !important;
 }
+
 
 .hero-badges {
   display: flex !important;
@@ -100,11 +109,13 @@ nav {
   margin: 0 auto 1.8rem !important;
 }
 
+
 .hero .badge {
   color: #ffffff !important;
   background: rgba(255, 255, 255, 0.12) !important;
   border: 1px solid rgba(255, 255, 255, 0.35) !important;
 }
+
 
 .hero-links {
   display: flex !important;
@@ -115,15 +126,18 @@ nav {
   margin: 0 auto !important;
 }
 
+
 .hero-links .btn-secondary {
   color: #ffffff !important;
   border: 1px solid rgba(255, 255, 255, 0.4) !important;
   background: transparent !important;
 }
 
+
 .hero::after {
   display: none !important;
 }
+
 
 .hero-links .btn {
   display: inline-flex;
@@ -131,6 +145,7 @@ nav {
   justify-content: center;
   gap: 0.5rem;
 }
+
 
 .hero-icon {
   width: 1rem;
@@ -140,6 +155,7 @@ nav {
 }
 
 
+
 main {
   max-width: 900px;
   margin: -2rem auto 0 !important;
@@ -147,6 +163,7 @@ main {
   position: relative;
   z-index: 2;
 }
+
 
 
 .badge {
@@ -162,6 +179,7 @@ main {
 }
 .badge:hover { background: rgba(255,255,255,0.25); }
 
+
 .badge-icon {
   width: 0.95rem;
   height: 0.95rem;
@@ -173,10 +191,12 @@ main {
   flex-shrink: 0;
 }
 
+
 .badge:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 2px;
 }
+
 
 .btn {
   padding: 0.65rem 1.4rem;
@@ -198,12 +218,14 @@ main {
 .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
 .btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; box-shadow: 0 0 0 4px rgba(255,153,0,0.5); }
 
+
 main {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 1.5rem 3rem;
   position: relative;
 }
+
 
 section {
   background: #fff;
@@ -215,8 +237,10 @@ section {
   scroll-margin-top: 80px;
 }
 
+
 h2 { color: var(--navy); font-size: 1.4rem; margin-bottom: 0.4rem; border-bottom: 3px solid var(--orange); display: inline-block; padding-bottom: 0.2rem; }
 .section-subtitle { color: var(--text-muted); font-size: 0.92rem; margin: 0.6rem 0 1.2rem; }
+
 
 .project-card, .cert-card { box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease; }
 .project-card { border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem 1.4rem; margin-bottom: 1.2rem; background: #fafbfc; }
@@ -228,9 +252,33 @@ h2 { color: var(--navy); font-size: 1.4rem; margin-bottom: 0.4rem; border-bottom
 .project-problem, .project-result, .project-stack { font-size: 0.92rem; margin-top: 0.5rem; }
 .project-stack { color: var(--text-muted); }
 
+
+.project-links { margin-top: 0.9rem; display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: #fff;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+.repo-link:hover { background: var(--gray-bg); border-color: var(--orange); transform: translateY(-1px); }
+.repo-link:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+.repo-icon { width: 0.95rem; height: 0.95rem; fill: currentColor; flex-shrink: 0; }
+.repo-link.demo-link { color: var(--orange); border-color: rgba(255,153,0,0.4); }
+.repo-link.demo-link:hover { background: #fff9f0; }
+
+
 .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; margin-top: 1rem; }
 .skill-group h4 { color: var(--navy); font-size: 0.92rem; margin-bottom: 0.3rem; }
 .skill-group p { font-size: 0.88rem; color: var(--text-muted); }
+
 
 .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem; }
 .cert-card { display: flex; flex-direction: column; gap: 0.35rem; padding: 1.1rem 1.2rem; border: 1px solid var(--border); border-radius: 8px; background: #fafbfc; text-decoration: none; }
@@ -241,6 +289,7 @@ h2 { color: var(--navy); font-size: 1.4rem; margin-bottom: 0.4rem; border-bottom
 .cert-year { font-size: 0.8rem; color: var(--orange); font-weight: 600; }
 .cert-verify { font-size: 0.72rem; color: var(--orange); font-weight: 700; margin-top: 0.2rem; }
 
+
 .exp-item { margin-bottom: 1.4rem; }
 .exp-item:last-child { margin-bottom: 0; }
 .exp-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
@@ -250,10 +299,12 @@ h2 { color: var(--navy); font-size: 1.4rem; margin-bottom: 0.4rem; border-bottom
 .exp-item ul { padding-left: 1.2rem; font-size: 0.92rem; }
 .exp-item li { margin-bottom: 0.3rem; }
 
+
 .live-demo-header { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 .live-dot { width: 9px; height: 9px; border-radius: 50%; background: #22c55e; display: inline-block; box-shadow: 0 0 0 0 rgba(34,197,94,0.6); animation: pulse-dot 1.8s infinite; }
 @keyframes pulse-dot { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); } 70% { box-shadow: 0 0 0 6px rgba(34,197,94,0); } 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); } }
 .live-label { font-size: 0.7rem; font-weight: 700; color: #16a34a; letter-spacing: 0.05em; }
+
 
 .demo-stat-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.2rem 0 1.6rem; }
 .demo-stat-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.25rem; padding: 1.4rem 1rem; background: linear-gradient(160deg, #0b1f33 0%, #16324a 100%); border-radius: 10px; color: #fff; box-shadow: 0 6px 18px rgba(11,31,51,0.18); transition: transform 0.2s ease; }
@@ -262,6 +313,7 @@ h2 { color: var(--navy); font-size: 1.4rem; margin-bottom: 0.4rem; border-bottom
 .demo-stat-value { font-size: 1.9rem; font-weight: 800; color: var(--orange); }
 .demo-stat-label { font-size: 0.85rem; font-weight: 600; color: #fff; }
 .demo-stat-source { font-size: 0.72rem; color: #b9c4d0; }
+
 
 .chat-card { border-top: 1px solid var(--border); padding-top: 1.4rem; }
 .chat-card h3 { color: var(--navy); font-size: 1.05rem; margin-bottom: 0.3rem; }
@@ -278,12 +330,14 @@ h2 { color: var(--navy); font-size: 1.4rem; margin-bottom: 0.4rem; border-bottom
 #chat-send:focus-visible { outline: 2px solid var(--navy); outline-offset: 1px; }
 #chat-send:disabled { opacity: 0.6; cursor: not-allowed; }
 
+
 .language-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
   margin-top: 0.8rem;
 }
+
 
 .language-badge {
   display: inline-block;
@@ -296,10 +350,12 @@ h2 { color: var(--navy); font-size: 1.4rem; margin-bottom: 0.4rem; border-bottom
   font-weight: 600;
 }
 
+
 .contact-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.8rem; }
 .contact-grid a { color: var(--navy); text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 6px; font-size: 0.88rem; transition: background 0.15s ease; }
 .contact-grid a:hover { background: var(--gray-bg); }
 .contact-grid a:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+
 
 .contact-badge {
   display: inline-flex;
@@ -316,11 +372,13 @@ h2 { color: var(--navy); font-size: 1.4rem; margin-bottom: 0.4rem; border-bottom
               transform 0.15s ease;
 }
 
+
 .contact-badge:hover {
   background: var(--gray-bg);
   border-color: var(--orange);
   transform: translateY(-1px);
 }
+
 
 .contact-icon {
   width: 1.05rem;
@@ -328,7 +386,9 @@ h2 { color: var(--navy); font-size: 1.4rem; margin-bottom: 0.4rem; border-bottom
   fill: currentColor;
 }
 
+
 footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; padding: 2rem 1rem; }
+
 
 @media (max-width: 600px) {
   .nav-inner { padding: 0.8rem 1rem; }
@@ -344,6 +404,7 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
   .chat-input-row { flex-direction: column; }
   #chat-send { width: 100%; }
 }
+
 
 
 @media (max-width: 400px) {
@@ -366,6 +427,7 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
   </div>
 </nav>
 
+
 <header class="hero">
   <h1>Jonathan Angel Gonzalez</h1>
   <p class="hero-role">Junior Cloud Engineer</p>
@@ -380,6 +442,7 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
     AWS Solutions Architect - Associate
   </a>
 
+
   <a
     href="https://www.credly.com/badges/4bea0010-dd3b-4433-be2c-d2b46f1915d0"
     target="_blank"
@@ -388,6 +451,7 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
     <span class="badge-icon" aria-hidden="true">🤖</span>
     AWS AI Practitioner
   </a>
+
 
   <a
   href="http://cert.efset.org/wkopgM"
@@ -399,6 +463,7 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
 </a>
 </div>
 
+
   <div class="hero-links">
   <a href="mailto:jonathan.angel.tech@gmail.com" class="btn btn-primary">
     <svg class="hero-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -407,12 +472,14 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
     Contact Me
   </a>
 
+
   <a href="https://github.com/tatan461" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
     <svg class="hero-icon" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.09 1.84 1.23 1.84 1.23 1.07 1.83 2.8 1.3 3.48.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.6-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/>
     </svg>
     View GitHub
   </a>
+
 
   <a href="https://linkedin.com/in/jonathan-angel-gonzalez-0543b441a" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
     <svg class="hero-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -423,40 +490,75 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
 </div>
 </header>
 
+
 <main>
   <section id="about">
     <h2>About Me</h2>
     <p>Junior Cloud Engineer focused on cloud infrastructure automation and serverless architectures. Certified as AWS Solutions Architect - Associate and AWS AI Practitioner, with hands-on experience building modular Infrastructure as Code with Terraform, designing highly available Multi-AZ network architectures, implementing security with KMS, and integrating AI services such as Amazon Bedrock with FinOps cost telemetry. Currently seeking my first professional opportunity as a Junior Cloud / DevOps Engineer, remote-first.</p>
   </section>
 
+
   <section id="projects">
     <h2>Projects</h2>
     <p class="section-subtitle">Four end-to-end AWS projects, each provisioned with Terraform and documented on GitHub.</p>
+
     <div class="project-card">
       <div class="project-header"><h3>Cloud Resume Challenge with AI Assistant</h3><span class="project-year">2026</span></div>
       <p class="project-problem"><strong>Problem:</strong> Most junior cloud portfolios show isolated demos instead of one coherent system spanning frontend, backend, IaC, CI/CD, and AI.</p>
       <p class="project-result"><strong>What I built:</strong> A personal resume site hosted on S3 and CloudFront with a serverless visit counter using Lambda, DynamoDB, and API Gateway. Infrastructure is provisioned with Terraform and deployed through GitHub Actions using OIDC. The site also integrates an Amazon Bedrock Nova Micro assistant with a Knowledge Base grounded in this resume and protected by Bedrock Guardrails.</p>
       <p class="project-stack"><strong>Stack:</strong> S3, CloudFront, Route 53, ACM, Lambda, DynamoDB, API Gateway, Amazon Bedrock, Terraform, GitHub Actions</p>
+      <div class="project-links">
+        <a href="https://github.com/tatan461/cloud-resume-ai" target="_blank" rel="noopener noreferrer" class="repo-link">
+          <svg class="repo-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.09 1.84 1.23 1.84 1.23 1.07 1.83 2.8 1.3 3.48.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.6-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
+          View Repository
+        </a>
+        <a href="https://tatan461.github.io/cloud-resume-ai/" target="_blank" rel="noopener noreferrer" class="repo-link demo-link">
+          <svg class="repo-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm7.93 8H16.9c-.14-2.02-.68-3.85-1.5-5.36 2.35 1.02 4.14 3 4.83 5.36zM12 4.06c1.14 1.6 1.96 3.62 2.1 5.94H9.9c.14-2.32.96-4.34 2.1-5.94zM4.26 14C4.09 13.36 4 12.69 4 12s.09-1.36.26-2h3.38c-.07.65-.11 1.32-.11 2s.04 1.35.11 2H4.26zm.81 2h3.03c.14 2.02.68 3.85 1.5 5.36-1.99-.86-3.6-2.43-4.53-4.36zm3.03-8H5.07c.93-1.93 2.54-3.5 4.53-4.36-.82 1.51-1.36 3.34-1.5 5.36zM12 19.94c-1.14-1.6-1.96-3.62-2.1-5.94h4.2c-.14 2.32-.96 4.34-2.1 5.94zM10.09 14c-.07-.65-.11-1.32-.11-2s.04-1.35.11-2h3.82c.07.65.11 1.32.11 2s-.04 1.35-.11 2h-3.82zm4.31 6.36c.82-1.51 1.36-3.34 1.5-5.36h3.03c-.93 1.93-2.54 3.5-4.53 4.36zM16.9 14c.07-.65.11-1.32.11-2s-.04-1.35-.11-2h3.03c.17.64.26 1.31.26 2s-.09 1.36-.26 2H16.9z"/></svg>
+          Live Demo
+        </a>
+      </div>
     </div>
+
     <div class="project-card">
       <div class="project-header"><h3>Kubernetes Cluster on Amazon EKS with Autoscaling &amp; Observability</h3><span class="project-year">2026</span></div>
       <p class="project-problem"><strong>Problem:</strong> Applications running on a single container platform cannot self-heal, scale under load, or provide visibility into cluster health.</p>
       <p class="project-result"><strong>What I built:</strong> A containerized application deployed to Amazon EKS with Terraform, Horizontal Pod Autoscaling, Helm, Prometheus, and Grafana. Images are pushed to Amazon ECR through GitHub Actions with automated tests and vulnerability scanning before deployment.</p>
       <p class="project-stack"><strong>Stack:</strong> Docker, Amazon EKS, Kubernetes, Helm, Amazon ECR, Prometheus, Grafana, GitHub Actions, Terraform</p>
+      <div class="project-links">
+        <a href="https://github.com/tatan461/eks-autoscaling-observability" target="_blank" rel="noopener noreferrer" class="repo-link">
+          <svg class="repo-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.09 1.84 1.23 1.84 1.23 1.07 1.83 2.8 1.3 3.48.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.6-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
+          View Repository
+        </a>
+      </div>
     </div>
+
     <div class="project-card">
       <div class="project-header"><h3>AWS Cost Optimization Dashboard</h3><span class="project-year">2026</span></div>
       <p class="project-problem"><strong>Problem:</strong> Cloud spend grows silently without visibility into idle resources or rightsizing opportunities.</p>
       <p class="project-result"><strong>What I built:</strong> Automated reporting on EC2 rightsizing, Graviton migration candidates, and idle resources using AWS Cost Explorer and Compute Optimizer data, with savings tracked on a live dashboard.</p>
       <p class="project-stack"><strong>Stack:</strong> AWS Cost Explorer, Compute Optimizer, Lambda, QuickSight, Terraform</p>
+      <div class="project-links">
+        <a href="https://github.com/tatan461/aws-cost-optimization-dashboard" target="_blank" rel="noopener noreferrer" class="repo-link">
+          <svg class="repo-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.09 1.84 1.23 1.84 1.23 1.07 1.83 2.8 1.3 3.48.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.6-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
+          View Repository
+        </a>
+      </div>
     </div>
+
     <div class="project-card">
       <div class="project-header"><h3>Automated Backup &amp; Disaster Recovery Pipeline</h3><span class="project-year">2026</span></div>
       <p class="project-problem"><strong>Problem:</strong> Without automated, encrypted, and tiered backups, data loss and recovery time both increase.</p>
       <p class="project-result"><strong>What I built:</strong> Automated database backups with Python and Boto3, encrypted archives with AWS KMS, S3 Lifecycle policies for Glacier tiering, and Slack alerts on failure.</p>
       <p class="project-stack"><strong>Stack:</strong> Python, Boto3, Amazon S3, KMS, Lifecycle policies, CloudWatch</p>
+      <div class="project-links">
+        <a href="https://github.com/tatan461/aws-automated-backup-pipeline" target="_blank" rel="noopener noreferrer" class="repo-link">
+          <svg class="repo-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.09 1.84 1.23 1.84 1.23 1.07 1.83 2.8 1.3 3.48.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.6-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5z"/></svg>
+          View Repository
+        </a>
+      </div>
     </div>
   </section>
+
 
   <section id="skills">
     <h2>Technical Skills</h2>
@@ -470,6 +572,7 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
     </div>
   </section>
 
+
   <section id="certifications">
     <h2>Certifications</h2>
     <p class="section-subtitle">Verified credentials. Click any card to view the public verification page.</p>
@@ -480,16 +583,19 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
     </div>
   </section>
 
+
   <section id="experience">
     <h2>Professional Experience</h2>
     <div class="exp-item"><div class="exp-header"><h3>Home Automation and Systems Specialist Technician</h3><span class="exp-date">2024 - Present</span></div><p class="exp-company">Ingenium SL - Oviedo, Spain</p><ul><li>Installation, integration, diagnostics, and maintenance of automation, control, and local network systems.</li><li>Resolution of technical incidents in local networks, communications, and hardware equipment.</li><li>Development of local scripts to optimize testing and technical support for devices.</li></ul></div>
     <div class="exp-item"><div class="exp-header"><h3>Hardware Support and Equipment Repair Technician</h3><span class="exp-date">2017 - 2023</span></div><p class="exp-company">Oviedo, Spain</p><ul><li>Diagnosis and repair of hardware components in computers and mobile devices.</li><li>On-site and remote customer service and technical support.</li></ul></div>
   </section>
 
+
   <section id="education">
     <h2>Education</h2>
     <div class="exp-item"><div class="exp-header"><h3>Vocational Diploma in Microcomputer Systems and Networks</h3><span class="exp-date">2020 - 2022</span></div><p class="exp-company">IES No. 1 - Gijon, Asturias, Spain</p><p>Basic Windows/Linux systems administration, local network setup, and user technical support.</p></div>
   </section>
+
 
  <section id="languages">
     <h2>Languages</h2>
@@ -498,6 +604,7 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
     <span class="language-badge">English · Advanced (C1)</span>
     </div>
   </section>
+
 
   <section id="live-demo">
     <div class="live-demo-header"><h2>Live Demo</h2><span class="live-dot"></span><span class="live-label">LIVE INFRASTRUCTURE</span></div>
@@ -509,6 +616,7 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
     <div class="chat-card"><h3>Ask My AI Assistant About My Background</h3><p class="section-subtitle">Powered by Amazon Bedrock with a Knowledge Base grounded in this resume.</p><div id="chat-window" aria-live="polite"><p><em>Ask a question below to get started, e.g. "What AWS projects has he built?"</em></p></div><div class="chat-input-row"><input type="text" id="chat-input" aria-label="Ask the AI assistant" placeholder="e.g. What AWS projects has he built?"><button id="chat-send" type="button">Send</button></div></div>
   </section>
 
+
   <section id="contact">
     <h2>Contact</h2>
     <p>I'm currently open to Junior Cloud / DevOps Engineer roles, remote-first.</p>
@@ -518,6 +626,7 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
   </svg>
   jonathan.angel.tech@gmail.com
 </a>
+
 
   <a
   href="https://linkedin.com/in/jonathan-angel-gonzalez-0543b441a"
@@ -529,6 +638,7 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
   </svg>
   LinkedIn
 </a>
+
 
 <a
   href="https://github.com/tatan461"
@@ -542,6 +652,7 @@ footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; paddi
 </a></div>
   </section>
 </main>
+
 
 <footer><p>&copy; 2026 Jonathan Angel Gonzalez. Built with S3, CloudFront, Lambda, and Terraform.</p></footer>
 <script src="script.js" defer></script>
